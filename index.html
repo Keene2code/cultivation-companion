@@ -1,0 +1,962 @@
+<title>Cultivation Companion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+:root {
+  --bg:             #EAEDE8;
+  --surface:        #F4F6F2;
+  --surface-raised: #FFFFFF;
+  --border:         #CDD4CA;
+  --border-subtle:  #E0E6DC;
+  --text-primary:   #1A2418;
+  --text-secondary: #4A5C48;
+  --text-muted:     #7A8A78;
+  --green-deep:     #253C22;
+  --green-mid:      #3D6438;
+  --green-sage:     #7A9C74;
+  --indigo:         #4A5888;
+  --stone:          #7A6655;
+  --chip-spring-bg: #EAF5E8;
+  --chip-summer-bg: #FFF3E0;
+  --chip-fall-bg:   #FBF0E8;
+  --chip-winter-bg: #E8EEF4;
+  --indigo-light:   #D8DCF0;
+  --stone-light:    #E8DED6;
+  --soil-faint:     #F5E8D8;
+  --soil-mid:       #C49060;
+  --soil-grid:      rgba(140, 90, 40, 0.15);
+  --unusable-bg:    rgba(180, 180, 170, 0.35);
+  --spring: #4A8040;
+  --summer: #A06820;
+  --fall:   #804020;
+  --winter: #3A5878;
+  --sidebar-w: 224px;
+  --panel-w:   300px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:             #141A12;
+    --surface:        #1C241A;
+    --surface-raised: #222C20;
+    --border:         #2C3C2A;
+    --border-subtle:  #243222;
+    --text-primary:   #E2E8DF;
+    --text-secondary: #9AAA94;
+    --text-muted:     #627060;
+    --green-deep:     #8AB884;
+    --green-mid:      #6A9864;
+    --green-sage:     #4A7444;
+    --indigo:         #8890C8;
+    --stone:          #A89080;
+    --chip-spring-bg: #1A2C18;
+    --chip-summer-bg: #2C2010;
+    --chip-fall-bg:   #2C1810;
+    --chip-winter-bg: #141C2C;
+    --indigo-light:   #1E2240;
+    --stone-light:    #2C2420;
+    --soil-faint:     #201610;
+    --soil-mid:       #7A5830;
+    --soil-grid:      rgba(200, 150, 80, 0.18);
+    --unusable-bg:    rgba(40, 50, 40, 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:             #141A12;
+  --surface:        #1C241A;
+  --surface-raised: #222C20;
+  --border:         #2C3C2A;
+  --border-subtle:  #243222;
+  --text-primary:   #E2E8DF;
+  --text-secondary: #9AAA94;
+  --text-muted:     #627060;
+  --green-deep:     #8AB884;
+  --green-mid:      #6A9864;
+  --green-sage:     #4A7444;
+  --indigo:         #8890C8;
+  --stone:          #A89080;
+  --chip-spring-bg: #1A2C18;
+  --chip-summer-bg: #2C2010;
+  --chip-fall-bg:   #2C1810;
+  --chip-winter-bg: #141C2C;
+  --indigo-light:   #1E2240;
+  --stone-light:    #2C2420;
+  --soil-faint:     #201610;
+  --soil-mid:       #7A5830;
+  --soil-grid:      rgba(200, 150, 80, 0.18);
+  --unusable-bg:    rgba(40, 50, 40, 0.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+/* ── Sidebar ─────────────────────── */
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.app-brand {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.app-brand h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.app-brand .sub {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.nav-section {
+  padding: 14px 0 8px;
+  flex: 1;
+}
+
+.nav-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 20px 6px;
+}
+
+.zone-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  color: var(--text-secondary);
+  transition: background 0.1s, color 0.1s;
+  user-select: none;
+}
+
+.zone-item:hover {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.zone-item.active {
+  background: var(--surface-raised);
+  border-left-color: var(--green-mid);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.zone-pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+
+.zone-item.active .zone-pip { background: var(--green-mid); }
+
+.zone-name { font-size: 14.5px; }
+
+.zone-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 0 20px 10px 33px;
+  line-height: 1.4;
+}
+
+.sidebar-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scale-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.swatch-unusable { background: var(--unusable-bg); border: 1px solid var(--border); }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s;
+  width: 100%;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+}
+
+/* ── Main ─────────────────────────── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.zone-header {
+  padding: 16px 28px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.zone-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.zone-meta-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.season-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.bar-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.s-chip {
+  padding: 4px 13px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.1s;
+}
+
+.s-chip:hover { background: var(--surface-raised); }
+.s-chip.on-spring { background: var(--chip-spring-bg); border-color: var(--spring); color: var(--spring); }
+.s-chip.on-summer { background: var(--chip-summer-bg); border-color: var(--summer); color: var(--summer); }
+.s-chip.on-fall   { background: var(--chip-fall-bg);   border-color: var(--fall);   color: var(--fall);   }
+.s-chip.on-winter { background: var(--chip-winter-bg); border-color: var(--winter); color: var(--winter); }
+
+.content-row {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── Bed canvas ───────────────────── */
+.bed-canvas {
+  flex: 1;
+  padding: 32px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.beds-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+}
+
+.bed-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.bed-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.bed-type-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+.bed {
+  display: grid;
+  background: var(--soil-faint);
+  border: 2px solid var(--soil-mid);
+  border-radius: 3px;
+  cursor: crosshair;
+  position: relative;
+}
+
+.bc {
+  border-right: 1px solid var(--soil-grid);
+  border-bottom: 1px solid var(--soil-grid);
+  transition: background 0.08s;
+}
+
+.bc:not(.bc-unusable):hover { background: rgba(140, 90, 40, 0.12); }
+
+.bc-unusable {
+  background: var(--unusable-bg);
+  cursor: not-allowed;
+}
+
+.bed-ruler {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1px;
+}
+
+.ruler-tick {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.zone-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 200px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.zone-placeholder .ph-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.zone-placeholder .ph-sub { font-size: 13.5px; line-height: 1.6; }
+
+/* ── Plant panel ──────────────────── */
+.plant-panel {
+  width: var(--panel-w);
+  flex-shrink: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.panel-head h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.panel-head .psub {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.plant-list { flex: 1; overflow-y: auto; }
+
+.pcard {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.1s, opacity 0.15s;
+}
+
+.pcard:hover { background: var(--surface-raised); }
+.pcard.dimmed { opacity: 0.3; }
+
+.pcard-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.pname {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.tended {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.t-claude { background: var(--indigo-light); color: var(--indigo); }
+.t-jasper { background: var(--stone-light);  color: var(--stone);  }
+
+.psci {
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.chip {
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 10px;
+}
+
+.cs { background: var(--chip-spring-bg); color: var(--spring); }
+.cu { background: var(--chip-summer-bg); color: var(--summer); }
+.cf { background: var(--chip-fall-bg);   color: var(--fall);   }
+.cw { background: var(--chip-winter-bg); color: var(--winter); }
+.ct { background: var(--border-subtle);  color: var(--text-secondary); }
+
+.pdetail {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pnw {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding: 6px 9px;
+  background: var(--surface-raised);
+  border-left: 2px solid var(--green-sage);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ── Toast ────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--text-primary);
+  color: var(--surface-raised);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 200;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+
+<!-- ── Sidebar ── -->
+<div class="sidebar">
+  <div class="app-brand">
+    <h1>Cultivation<br>Companion</h1>
+    <div class="sub">Zone 8b · Portland, OR</div>
+  </div>
+
+  <nav class="nav-section" id="zone-nav">
+    <div class="nav-label">Garden Zones</div>
+
+    <div class="zone-item active" data-zone="front_beds">
+      <div class="zone-pip"></div>
+      <span class="zone-name">Front Beds</span>
+    </div>
+    <div class="zone-desc">4 raised beds · full sun</div>
+
+    <div class="zone-item" data-zone="greenhouse">
+      <div class="zone-pip"></div>
+      <span class="zone-name">Greenhouse</span>
+    </div>
+    <div class="zone-desc">~8–10 × 4 ft · season extension</div>
+
+    <div class="zone-item" data-zone="shade_garden">
+      <div class="zone-pip"></div>
+      <span class="zone-name">Shade Garden</span>
+    </div>
+    <div class="zone-desc">Native understory · partial shade</div>
+
+    <div class="zone-item" data-zone="backyard">
+      <div class="zone-pip"></div>
+      <span class="zone-name">Backyard</span>
+    </div>
+    <div class="zone-desc">Fruit trees · lawn area</div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="scale-note">Each cell = 6 in × 6 in<br>Each bed = 4 ft × 2 ft</div>
+    <div class="legend-row">
+      <div class="legend-swatch swatch-unusable"></div>
+      <span>Rounded corner — unusable</span>
+    </div>
+    <button class="theme-toggle" id="theme-btn">Toggle dark / light</button>
+  </div>
+</div>
+
+<!-- ── Main ── -->
+<div class="main">
+  <div class="zone-header">
+    <span class="zone-title" id="zone-title">Front Beds</span>
+    <span class="zone-meta-text" id="zone-meta">4 beds · 4 ft × 2 ft · full sun</span>
+  </div>
+
+  <div class="season-bar">
+    <span class="bar-label">Season</span>
+    <button class="s-chip" data-season="spring">Spring</button>
+    <button class="s-chip" data-season="summer">Summer</button>
+    <button class="s-chip" data-season="fall">Fall</button>
+    <button class="s-chip" data-season="winter">Winter</button>
+  </div>
+
+  <div class="content-row">
+    <div class="bed-canvas" id="bed-canvas"></div>
+
+    <div class="plant-panel">
+      <div class="panel-head">
+        <h2 id="panel-title">Plants for this zone</h2>
+        <div class="psub" id="panel-sub">Showing all seasons</div>
+      </div>
+      <div class="plant-list" id="plant-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Bed types ────────────────────────────────
+// unusableFn(cols, rows) returns array of flat cell indices that are
+// outside the plantable area. Extend this object for new bed shapes.
+const BED_TYPES = {
+  rectangular: {
+    label: 'Rectangular',
+    unusable: () => [],
+  },
+  round_corner: {
+    label: 'Round corner',
+    // Marks the 4 corner cells as unusable (approx. 6-inch radius)
+    unusable: (cols, rows) => [0, cols - 1, cols * (rows - 1), cols * rows - 1],
+  },
+};
+
+// ── Garden beds ──────────────────────────────
+// position: feet from NW corner of front yard (placeholder — update with measurements)
+// cols × rows at 6 in/cell: 8 × 4 = 4 ft × 2 ft
+const BEDS = [
+  { id: 1, type: 'round_corner', cols: 8, rows: 4, position: { x: 0, y: 0 } },
+  { id: 2, type: 'round_corner', cols: 8, rows: 4, position: { x: 5, y: 0 } },
+  { id: 3, type: 'round_corner', cols: 8, rows: 4, position: { x: 0, y: 3 } },
+  { id: 4, type: 'round_corner', cols: 8, rows: 4, position: { x: 5, y: 3 } },
+];
+
+// ── Plants ───────────────────────────────────
+const PLANTS = [
+  {
+    id: 'kale',
+    name: 'Kale',
+    sci: 'Brassica oleracea var. sabellica',
+    type: 'Vegetable',
+    seasons: ['fall', 'winter', 'spring'],
+    zones: ['front_beds', 'greenhouse'],
+    tended_by: null,
+    maturity: '55–65 days',
+    spacing: '18 in',
+    pnw: 'Flavor improves after frost. Overwinters in the ground with no protection in zone 8b. Cut outer leaves for continuous harvest.',
+  },
+  {
+    id: 'elephant-garlic',
+    name: 'Elephant Garlic',
+    sci: 'Allium ampeloprasum',
+    type: 'Vegetable',
+    seasons: ['fall', 'winter', 'spring', 'summer'],
+    zones: ['front_beds'],
+    tended_by: null,
+    maturity: '9 months — plant Oct, harvest Jul',
+    spacing: '8 in',
+    pnw: 'Plant cloves October–November. Cut scapes in June to redirect energy to the bulb. Cure harvested bulbs 2–4 weeks before storing.',
+  },
+  {
+    id: 'tomato-stupice',
+    name: 'Stupice Tomato',
+    sci: "Solanum lycopersicum 'Stupice'",
+    type: 'Vegetable',
+    seasons: ['summer', 'fall'],
+    zones: ['front_beds', 'greenhouse'],
+    tended_by: 'claude',
+    maturity: '52–65 days',
+    spacing: '30 in',
+    pnw: 'Czech heirloom bred for cool, short-season climates — one of the most reliable heirlooms for PNW summers. Indeterminate; needs staking. Start indoors late February.',
+  },
+  {
+    id: 'borage',
+    name: 'Borage',
+    sci: 'Borago officinalis',
+    type: 'Herb',
+    seasons: ['spring', 'summer', 'fall'],
+    zones: ['front_beds'],
+    tended_by: 'claude',
+    maturity: '50–60 days to flower',
+    spacing: '15 in',
+    pnw: 'Blue star-shaped flowers are edible. Self-seeds prolifically — thin rather than replant. Strong pollinator magnet; bees especially.',
+  },
+  {
+    id: 'salal',
+    name: 'Salal',
+    sci: 'Gaultheria shallon',
+    type: 'Native shrub',
+    seasons: ['all'],
+    zones: ['shade_garden'],
+    tended_by: 'jasper',
+    maturity: 'Perennial — 2–3 yr to establish',
+    spacing: '36 in',
+    pnw: 'Native to PNW coastal forests. Extremely low maintenance once established. Berries ripen Aug–Sep, best for jams. Historically significant food plant for Indigenous peoples of the Pacific Coast.',
+  },
+];
+
+const ZONE_META = {
+  front_beds:   { title: 'Front Beds',    meta: '4 beds · 4 ft × 2 ft · full sun' },
+  greenhouse:   { title: 'Greenhouse',    meta: '~8–10 × 4 ft · season extension · sheltered' },
+  shade_garden: { title: 'Shade Garden',  meta: 'Side yard · partial shade · native understory' },
+  backyard:     { title: 'Backyard',      meta: 'Fruit trees · lawn · open' },
+};
+
+const SEASON_CHIP_CLASS = { spring: 'cs', summer: 'cu', fall: 'cf', winter: 'cw' };
+const SEASON_LABEL = { spring: 'Spring', summer: 'Summer', fall: 'Fall', winter: 'Winter' };
+const CELL_PX = 30;
+
+let currentZone = 'front_beds';
+let currentSeason = null;
+
+// ── Bed renderer ─────────────────────────────
+function buildBeds() {
+  const canvas = document.getElementById('bed-canvas');
+  canvas.innerHTML = '';
+
+  if (currentZone !== 'front_beds') {
+    const z = ZONE_META[currentZone];
+    const ph = document.createElement('div');
+    ph.className = 'zone-placeholder';
+    ph.innerHTML = `<div class="ph-title">${z.title}</div><div class="ph-sub">${z.meta}<br><br>Layout planning coming soon.</div>`;
+    canvas.appendChild(ph);
+    return;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'beds-grid';
+
+  BEDS.forEach(bed => {
+    const bedType = BED_TYPES[bed.type] || BED_TYPES.rectangular;
+    const unusable = new Set(bedType.unusable(bed.cols, bed.rows));
+    const totalCells = bed.cols * bed.rows;
+    const usable = totalCells - unusable.size;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'bed-wrap';
+
+    const lbl = document.createElement('div');
+    lbl.className = 'bed-label';
+    lbl.textContent = `Bed ${bed.id}`;
+    wrap.appendChild(lbl);
+
+    const typeTag = document.createElement('div');
+    typeTag.className = 'bed-type-tag';
+    typeTag.textContent = `${bedType.label} · ${usable} plantable cells`;
+    wrap.appendChild(typeTag);
+
+    const bedEl = document.createElement('div');
+    bedEl.className = 'bed';
+    bedEl.style.gridTemplateColumns = `repeat(${bed.cols}, ${CELL_PX}px)`;
+    bedEl.style.gridTemplateRows    = `repeat(${bed.rows}, ${CELL_PX}px)`;
+
+    for (let i = 0; i < totalCells; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'bc' + (unusable.has(i) ? ' bc-unusable' : '');
+      if (!unusable.has(i)) {
+        cell.dataset.bed = bed.id;
+        cell.dataset.idx = i;
+        cell.dataset.x   = bed.position.x;
+        cell.dataset.y   = bed.position.y;
+        cell.addEventListener('click', onCellClick);
+      }
+      bedEl.appendChild(cell);
+    }
+
+    wrap.appendChild(bedEl);
+
+    const rulerWidth = bed.cols * CELL_PX;
+    const ruler = document.createElement('div');
+    ruler.className = 'bed-ruler';
+    ruler.style.width = rulerWidth + 'px';
+    for (let ft = 0; ft <= bed.cols / 2; ft++) {
+      const t = document.createElement('span');
+      t.className = 'ruler-tick';
+      t.textContent = ft + ' ft';
+      ruler.appendChild(t);
+    }
+    wrap.appendChild(ruler);
+
+    grid.appendChild(wrap);
+  });
+
+  canvas.appendChild(grid);
+
+  const note = document.createElement('div');
+  note.className = 'canvas-note';
+  note.innerHTML = 'Each cell = 6 in × 6 in &nbsp;·&nbsp; Click a cell to plan a planting <em>(coming soon)</em><br>Bed positions stored as yard coordinates for future satellite overlay.';
+  canvas.appendChild(note);
+}
+
+// ── Plant list ───────────────────────────────
+function buildPlantList() {
+  const list = document.getElementById('plant-list');
+  const sub  = document.getElementById('panel-sub');
+  list.innerHTML = '';
+
+  const zonePlants = PLANTS.filter(p => p.zones.includes(currentZone));
+  sub.textContent = currentSeason
+    ? `Filtered: ${currentSeason.charAt(0).toUpperCase() + currentSeason.slice(1)}`
+    : 'Showing all seasons';
+
+  if (zonePlants.length === 0) {
+    const empty = document.createElement('div');
+    empty.style.cssText = 'padding:20px 18px;font-size:13px;color:var(--text-muted);';
+    empty.textContent = 'No plants defined for this zone yet.';
+    list.appendChild(empty);
+    return;
+  }
+
+  zonePlants.forEach(p => {
+    const inSeason = !currentSeason
+      || p.seasons.includes(currentSeason)
+      || p.seasons.includes('all');
+
+    const card = document.createElement('div');
+    card.className = 'pcard' + (inSeason ? '' : ' dimmed');
+
+    const top = document.createElement('div');
+    top.className = 'pcard-top';
+
+    const name = document.createElement('div');
+    name.className = 'pname';
+    name.textContent = p.name;
+    top.appendChild(name);
+
+    if (p.tended_by) {
+      const badge = document.createElement('span');
+      badge.className = 'tended t-' + p.tended_by;
+      badge.textContent = p.tended_by === 'claude' ? 'Claude' : 'Jasper';
+      top.appendChild(badge);
+    }
+
+    card.appendChild(top);
+
+    const sci = document.createElement('div');
+    sci.className = 'psci';
+    sci.textContent = p.sci;
+    card.appendChild(sci);
+
+    const chips = document.createElement('div');
+    chips.className = 'chips';
+
+    const typeChip = document.createElement('span');
+    typeChip.className = 'chip ct';
+    typeChip.textContent = p.type;
+    chips.appendChild(typeChip);
+
+    const seasons = p.seasons.includes('all')
+      ? ['spring', 'summer', 'fall', 'winter']
+      : p.seasons;
+
+    seasons.forEach(s => {
+      const sc = document.createElement('span');
+      sc.className = 'chip ' + SEASON_CHIP_CLASS[s];
+      sc.textContent = SEASON_LABEL[s];
+      chips.appendChild(sc);
+    });
+
+    card.appendChild(chips);
+
+    const det = document.createElement('div');
+    det.className = 'pdetail';
+    det.innerHTML = `<span>Maturity: ${p.maturity}</span><span>Spacing: ${p.spacing}</span>`;
+    card.appendChild(det);
+
+    const pnw = document.createElement('div');
+    pnw.className = 'pnw';
+    pnw.textContent = p.pnw;
+    card.appendChild(pnw);
+
+    list.appendChild(card);
+  });
+}
+
+// ── Zone switching ───────────────────────────
+function setZone(zoneId) {
+  currentZone = zoneId;
+  document.querySelectorAll('.zone-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.zone === zoneId);
+  });
+  const z = ZONE_META[zoneId];
+  document.getElementById('zone-title').textContent = z.title;
+  document.getElementById('zone-meta').textContent  = z.meta;
+  buildBeds();
+  buildPlantList();
+}
+
+document.getElementById('zone-nav').addEventListener('click', e => {
+  const item = e.target.closest('.zone-item');
+  if (item) setZone(item.dataset.zone);
+});
+
+// ── Season filter ────────────────────────────
+document.querySelectorAll('.s-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const s = btn.dataset.season;
+    if (currentSeason === s) {
+      currentSeason = null;
+      btn.className = 's-chip';
+    } else {
+      currentSeason = s;
+      document.querySelectorAll('.s-chip').forEach(b => b.className = 's-chip');
+      btn.className = `s-chip on-${s}`;
+    }
+    buildPlantList();
+  });
+});
+
+// ── Cell click ───────────────────────────────
+let toastTimer;
+function onCellClick(e) {
+  const { bed, idx } = e.currentTarget.dataset;
+  showToast(`Bed ${bed} · cell ${parseInt(idx) + 1} · Plant placement coming soon`);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ── Theme toggle ─────────────────────────────
+document.getElementById('theme-btn').addEventListener('click', () => {
+  const root = document.documentElement;
+  const cur = root.getAttribute('data-theme');
+  if (cur === 'dark')       root.setAttribute('data-theme', 'light');
+  else if (cur === 'light') root.removeAttribute('data-theme');
+  else                      root.setAttribute('data-theme', 'dark');
+});
+
+// ── Init ─────────────────────────────────────
+buildBeds();
+buildPlantList();
+</script>
