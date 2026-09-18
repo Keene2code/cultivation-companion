@@ -31,6 +31,10 @@
   --summer: #A06820;
   --fall:   #804020;
   --winter: #3A5878;
+  --pet-safe-bg:   #D6EFD6;
+  --pet-safe-fg:   #1A541A;
+  --pet-unsafe-bg: #F0D8D8;
+  --pet-unsafe-fg: #5A1A1A;
   --sidebar-w: 224px;
   --panel-w:   300px;
 }
@@ -59,6 +63,10 @@
     --soil-mid:       #7A5830;
     --soil-grid:      rgba(200, 150, 80, 0.18);
     --unusable-bg:    rgba(40, 50, 40, 0.5);
+    --pet-safe-bg:   #102810;
+    --pet-safe-fg:   #74C474;
+    --pet-unsafe-bg: #280E0E;
+    --pet-unsafe-fg: #C47474;
   }
 }
 
@@ -85,6 +93,10 @@
   --soil-mid:       #7A5830;
   --soil-grid:      rgba(200, 150, 80, 0.18);
   --unusable-bg:    rgba(40, 50, 40, 0.5);
+  --pet-safe-bg:   #102810;
+  --pet-safe-fg:   #74C474;
+  --pet-unsafe-bg: #280E0E;
+  --pet-unsafe-fg: #C47474;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -110,16 +122,12 @@ body {
   overflow-y: auto;
 }
 
-.app-brand {
-  padding: 22px 20px 18px;
-  border-bottom: 1px solid var(--border-subtle);
-}
+.app-brand { padding: 22px 20px 18px; border-bottom: 1px solid var(--border-subtle); }
 
 .app-brand h1 {
   font-family: 'Fraunces', Georgia, serif;
   font-size: 19px;
   font-weight: 600;
-  color: var(--text-primary);
   line-height: 1.2;
   text-wrap: balance;
 }
@@ -156,56 +164,17 @@ body {
 }
 
 .zone-item:hover { background: var(--surface-raised); color: var(--text-primary); }
+.zone-item.active { background: var(--surface-raised); border-left-color: var(--green-mid); color: var(--text-primary); font-weight: 500; }
 
-.zone-item.active {
-  background: var(--surface-raised);
-  border-left-color: var(--green-mid);
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.zone-pip {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-  flex-shrink: 0;
-  transition: background 0.1s;
-}
-
+.zone-pip { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background 0.1s; }
 .zone-item.active .zone-pip { background: var(--green-mid); }
 .zone-name { font-size: 14.5px; }
+.zone-desc { font-size: 12px; color: var(--text-muted); padding: 0 20px 10px 33px; line-height: 1.4; }
 
-.zone-desc {
-  font-size: 12px;
-  color: var(--text-muted);
-  padding: 0 20px 10px 33px;
-  line-height: 1.4;
-}
-
-.sidebar-footer {
-  padding: 14px 20px;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+.sidebar-footer { padding: 14px 20px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 10px; }
 .scale-note { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-
-.legend-row {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.legend-swatch {
-  width: 14px; height: 14px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
+.legend-row { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+.legend-swatch { width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; }
 .swatch-unusable { background: var(--unusable-bg); border: 1px solid var(--border); }
 
 .theme-toggle {
@@ -220,7 +189,6 @@ body {
   transition: all 0.1s;
   width: 100%;
 }
-
 .theme-toggle:hover { background: var(--surface-raised); color: var(--text-secondary); }
 
 /* ── Main ─────────────────────────── */
@@ -236,12 +204,7 @@ body {
   flex-shrink: 0;
 }
 
-.zone-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 24px;
-  font-weight: 400;
-}
-
+.zone-title { font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: 400; }
 .zone-meta-text { font-size: 13px; color: var(--text-muted); }
 
 .season-bar {
@@ -254,13 +217,7 @@ body {
   flex-shrink: 0;
 }
 
-.bar-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-right: 4px;
-}
+.bar-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-right: 4px; }
 
 .s-chip {
   padding: 4px 13px;
@@ -274,7 +231,6 @@ body {
   font-family: 'DM Sans', sans-serif;
   transition: all 0.1s;
 }
-
 .s-chip:hover { background: var(--surface-raised); }
 .s-chip.on-spring { background: var(--chip-spring-bg); border-color: var(--spring); color: var(--spring); }
 .s-chip.on-summer { background: var(--chip-summer-bg); border-color: var(--summer); color: var(--summer); }
@@ -284,242 +240,326 @@ body {
 .content-row { flex: 1; display: flex; overflow: hidden; }
 
 /* ── Bed canvas ───────────────────── */
-.bed-canvas {
-  flex: 1;
-  padding: 32px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
+.bed-canvas { flex: 1; padding: 32px; overflow: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .beds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
-
 .bed-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-
 .bed-label { font-size: 12.5px; font-weight: 500; color: var(--text-muted); }
 .bed-type-tag { font-size: 11px; color: var(--text-muted); opacity: 0.75; }
 
-.bed {
-  display: grid;
-  background: var(--soil-faint);
-  border: 2px solid var(--soil-mid);
-  border-radius: 3px;
-  position: relative;
-}
+.bed { display: grid; background: var(--soil-faint); border: 2px solid var(--soil-mid); border-radius: 3px; position: relative; }
 
-/* Individual cells */
-.bc {
-  border-right: 1px solid var(--soil-grid);
-  border-bottom: 1px solid var(--soil-grid);
-  transition: background 0.08s;
-  position: relative;
-  cursor: crosshair;
-}
-
+.bc { border-right: 1px solid var(--soil-grid); border-bottom: 1px solid var(--soil-grid); transition: background 0.08s; position: relative; cursor: crosshair; }
 .bc:not(.bc-unusable):not(.bc-placed):hover { background: rgba(140, 90, 40, 0.12); }
-
-.bc-unusable {
-  background: var(--unusable-bg);
-  cursor: not-allowed;
-}
-
-/* Placed plant indicator — a colored circle filling most of the cell */
+.bc-unusable { background: var(--unusable-bg); cursor: not-allowed; }
 .bc-placed { cursor: pointer; }
 
-.plant-dot {
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  font-weight: 700;
-  color: #fff;
-  pointer-events: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-  letter-spacing: 0;
-}
+.plant-dot { position: absolute; inset: 3px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; pointer-events: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
 
-.bed-ruler {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1px;
-}
-
+.bed-ruler { display: flex; justify-content: space-between; padding: 0 1px; }
 .ruler-tick { font-size: 10.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.canvas-note { font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.6; }
 
-.canvas-note {
-  font-size: 13px;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.6;
-}
-
-.zone-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 200px;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.zone-placeholder .ph-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 20px;
-  font-weight: 400;
-  color: var(--text-secondary);
-}
-
+.zone-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 200px; color: var(--text-muted); text-align: center; }
+.zone-placeholder .ph-title { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text-secondary); }
 .zone-placeholder .ph-sub { font-size: 13.5px; line-height: 1.6; }
 
 /* ── Plant selector popover ───────── */
-.popover {
-  position: fixed;
-  background: var(--surface-raised);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.14);
-  z-index: 300;
-  min-width: 210px;
-  overflow: hidden;
-  display: none;
-}
-
+.popover { position: fixed; background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.14); z-index: 300; min-width: 210px; overflow: hidden; display: none; }
 .popover.open { display: block; }
-
-.popover-header {
-  padding: 9px 14px 7px;
-  border-bottom: 1px solid var(--border-subtle);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.popover-plant {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 14px;
-  cursor: pointer;
-  border-bottom: 1px solid var(--border-subtle);
-  transition: background 0.1s;
-}
-
+.popover-header { padding: 9px 14px 7px; border-bottom: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.popover-plant { display: flex; align-items: center; gap: 10px; padding: 9px 14px; cursor: pointer; border-bottom: 1px solid var(--border-subtle); transition: background 0.1s; }
 .popover-plant:last-of-type { border-bottom: none; }
 .popover-plant:hover { background: var(--surface); }
-
-.p-dot {
-  width: 13px; height: 13px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
+.p-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }
 .popover-plant-name { font-size: 14px; color: var(--text-primary); }
 .popover-plant-detail { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
-
-.popover-remove {
-  display: flex;
-  align-items: center;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 13.5px;
-  color: var(--fall);
-  transition: background 0.1s;
-  gap: 8px;
-}
-
+.popover-remove { display: flex; align-items: center; padding: 10px 14px; cursor: pointer; font-size: 13.5px; color: var(--fall); transition: background 0.1s; gap: 8px; }
 .popover-remove:hover { background: var(--chip-fall-bg); }
 
 /* ── Plant panel ──────────────────── */
-.plant-panel {
-  width: var(--panel-w);
-  flex-shrink: 0;
-  background: var(--surface);
-  border-left: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.panel-head {
-  padding: 14px 18px 12px;
-  border-bottom: 1px solid var(--border-subtle);
-  flex-shrink: 0;
-}
-
-.panel-head h2 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 15.5px;
-  font-weight: 600;
-}
-
+.plant-panel { width: var(--panel-w); flex-shrink: 0; background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+.panel-head { padding: 14px 18px 12px; border-bottom: 1px solid var(--border-subtle); flex-shrink: 0; }
+.panel-head h2 { font-family: 'Fraunces', Georgia, serif; font-size: 15.5px; font-weight: 600; }
 .panel-head .psub { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
-
 .plant-list { flex: 1; overflow-y: auto; }
 
-.pcard {
-  padding: 13px 18px;
-  border-bottom: 1px solid var(--border-subtle);
-  transition: background 0.1s, opacity 0.15s;
-}
-
+.pcard { padding: 13px 18px; border-bottom: 1px solid var(--border-subtle); transition: background 0.1s, opacity 0.15s; cursor: pointer; }
 .pcard:hover { background: var(--surface-raised); }
 .pcard.dimmed { opacity: 0.3; }
-
 .pcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
 
-.pname {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-.tended {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 2px 8px;
-  border-radius: 10px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
+.pname { font-family: 'Fraunces', Georgia, serif; font-size: 17px; font-weight: 400; line-height: 1.2; }
+.tended { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
 .t-claude { background: var(--indigo-light); color: var(--indigo); }
 .t-jasper { background: var(--stone-light);  color: var(--stone);  }
-
 .psci { font-size: 12.5px; font-style: italic; color: var(--text-muted); margin-top: 2px; }
-
 .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
-
 .chip { font-size: 11.5px; font-weight: 500; padding: 2px 9px; border-radius: 10px; }
-
 .cs { background: var(--chip-spring-bg); color: var(--spring); }
 .cu { background: var(--chip-summer-bg); color: var(--summer); }
 .cf { background: var(--chip-fall-bg);   color: var(--fall);   }
 .cw { background: var(--chip-winter-bg); color: var(--winter); }
 .ct { background: var(--border-subtle);  color: var(--text-secondary); }
-
 .pdetail { font-size: 12.5px; color: var(--text-muted); margin-top: 7px; display: flex; flex-direction: column; gap: 2px; }
+.pnw { margin-top: 8px; font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; padding: 6px 9px; background: var(--surface-raised); border-left: 2px solid var(--green-sage); border-radius: 0 3px 3px 0; }
+.view-profile { font-size: 11.5px; color: var(--green-mid); margin-top: 8px; }
 
-.pnw {
-  margin-top: 8px;
-  font-size: 12.5px;
+/* ── On deck toggle / month bar ─────────────── */
+.ondeck-toggle {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
   color: var(--text-secondary);
-  line-height: 1.55;
-  padding: 6px 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 4px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.ondeck-toggle:hover { background: var(--surface-raised); }
+.ondeck-toggle.active { background: var(--chip-fall-bg); border-color: var(--fall); color: var(--fall); }
+
+.month-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.month-nav {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+.month-nav:hover { background: var(--surface-raised); color: var(--text-primary); }
+
+.month-display {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  min-width: 96px;
+  text-align: center;
+}
+
+.month-clear {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  margin-left: auto;
+  font-family: 'DM Sans', sans-serif;
+}
+.month-clear:hover { color: var(--text-primary); }
+
+/* ── On deck panel view ──────────────────────── */
+.ondeck-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 18px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ondeck-group-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+.ondeck-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: background 0.1s;
+  gap: 8px;
+}
+.ondeck-item:hover { background: var(--surface-raised); }
+
+.ondeck-plant-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.urgency-badge {
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.urgency-last { background: var(--chip-fall-bg); color: var(--fall); }
+.urgency-time { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
+
+/* ── Modal ────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  backdrop-filter: blur(2px);
+  z-index: 400;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-backdrop.open { display: flex; }
+
+.modal {
   background: var(--surface-raised);
-  border-left: 2px solid var(--green-sage);
-  border-radius: 0 3px 3px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: min(700px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  background: var(--surface-raised);
+  z-index: 1;
+}
+
+.modal-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+
+.modal-name { font-family: 'Fraunces', Georgia, serif; font-size: 28px; font-weight: 400; line-height: 1.1; }
+.modal-sci { font-size: 13.5px; font-style: italic; color: var(--text-muted); margin-top: 4px; }
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-family: 'DM Sans', sans-serif;
+}
+.modal-close:hover { color: var(--text-primary); }
+
+.modal-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: var(--surface);
+}
+
+.badge-indigo { background: var(--indigo-light); border-color: var(--indigo); color: var(--indigo); }
+.badge-stone  { background: var(--stone-light);  border-color: var(--stone);  color: var(--stone);  }
+
+.badge-pet { display: inline-flex; align-items: center; gap: 5px; padding-left: 7px; }
+.badge-pet-safe    { background: var(--pet-safe-bg);   border-color: var(--pet-safe-fg);   color: var(--pet-safe-fg);   }
+.badge-pet-unsafe  { background: var(--pet-unsafe-bg); border-color: var(--pet-unsafe-fg); color: var(--pet-unsafe-fg); }
+.badge-pet-unknown { background: var(--surface);        border-color: var(--border);         color: var(--text-muted);    }
+
+.modal-body { padding: 24px 28px 32px; display: flex; flex-direction: column; gap: 28px; }
+
+.modal-section {}
+
+.modal-section-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* ── Planting calendar ────────────── */
+.cal { display: flex; flex-direction: column; gap: 0; }
+
+.cal-row {
+  display: grid;
+  grid-template-columns: 92px repeat(12, 1fr);
+  gap: 0 2px;
+  align-items: center;
+  min-height: 20px;
+}
+
+.cal-month-label { font-size: 10.5px; text-align: center; color: var(--text-muted); font-weight: 500; padding-bottom: 6px; }
+.cal-month-label.current { color: var(--green-mid); font-weight: 700; }
+
+.cal-act-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 6px;
+}
+
+.cal-cell { height: 13px; border-radius: 2px; transition: opacity 0.1s; }
+
+.cal-note-row {
+  grid-column: 1 / -1;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 3px 0 9px 94px;
+  line-height: 1.4;
+}
+
+.cal-row:has(.cal-note-row) {
+  grid-template-columns: 1fr;
+}
+
+/* ── Companion / antagonist list ──── */
+.relation-list { display: flex; flex-direction: column; gap: 10px; }
+
+.relation-item { display: flex; gap: 10px; align-items: flex-start; }
+
+.relation-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.dot-companion  { background: var(--green-mid); }
+.dot-antagonist { background: var(--fall); }
+
+.relation-plant { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.3; }
+.relation-note  { font-size: 12.5px; color: var(--text-muted); margin-top: 1px; line-height: 1.4; }
+
+.pnw-modal {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding: 12px 14px;
+  background: var(--surface);
+  border-left: 3px solid var(--green-sage);
+  border-radius: 0 4px 4px 0;
 }
 
 /* ── Toast ────────────────────────── */
@@ -539,7 +579,6 @@ body {
   opacity: 0;
   white-space: nowrap;
 }
-
 .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 </style>
 
@@ -549,33 +588,20 @@ body {
     <h1>Cultivation<br>Companion</h1>
     <div class="sub">Zone 8b · Portland, OR</div>
   </div>
-
   <nav class="nav-section" id="zone-nav">
     <div class="nav-label">Garden Zones</div>
-    <div class="zone-item active" data-zone="front_beds">
-      <div class="zone-pip"></div><span class="zone-name">Front Beds</span>
-    </div>
+    <div class="zone-item active" data-zone="front_beds"><div class="zone-pip"></div><span class="zone-name">Front Beds</span></div>
     <div class="zone-desc">4 raised beds · full sun</div>
-    <div class="zone-item" data-zone="greenhouse">
-      <div class="zone-pip"></div><span class="zone-name">Greenhouse</span>
-    </div>
+    <div class="zone-item" data-zone="greenhouse"><div class="zone-pip"></div><span class="zone-name">Greenhouse</span></div>
     <div class="zone-desc">~8–10 × 4 ft · season extension</div>
-    <div class="zone-item" data-zone="shade_garden">
-      <div class="zone-pip"></div><span class="zone-name">Shade Garden</span>
-    </div>
+    <div class="zone-item" data-zone="shade_garden"><div class="zone-pip"></div><span class="zone-name">Shade Garden</span></div>
     <div class="zone-desc">Native understory · partial shade</div>
-    <div class="zone-item" data-zone="backyard">
-      <div class="zone-pip"></div><span class="zone-name">Backyard</span>
-    </div>
+    <div class="zone-item" data-zone="backyard"><div class="zone-pip"></div><span class="zone-name">Backyard</span></div>
     <div class="zone-desc">Fruit trees · lawn area</div>
   </nav>
-
   <div class="sidebar-footer">
     <div class="scale-note">Each cell = 6 in × 6 in<br>Each bed = 4 ft × 2 ft</div>
-    <div class="legend-row">
-      <div class="legend-swatch swatch-unusable"></div>
-      <span>Rounded corner — unusable</span>
-    </div>
+    <div class="legend-row"><div class="legend-swatch swatch-unusable"></div><span>Rounded corner — unusable</span></div>
     <button class="theme-toggle" id="theme-btn">Toggle dark / light</button>
   </div>
 </div>
@@ -586,22 +612,27 @@ body {
     <span class="zone-title" id="zone-title">Front Beds</span>
     <span class="zone-meta-text" id="zone-meta">4 beds · 4 ft × 2 ft · full sun</span>
   </div>
-
   <div class="season-bar">
     <span class="bar-label">Season</span>
     <button class="s-chip" data-season="spring">Spring</button>
     <button class="s-chip" data-season="summer">Summer</button>
     <button class="s-chip" data-season="fall">Fall</button>
     <button class="s-chip" data-season="winter">Winter</button>
+    <button class="ondeck-toggle" id="ondeck-btn">On deck</button>
   </div>
-
+  <div class="month-bar" id="month-bar" style="display:none">
+    <span class="bar-label">ON DECK</span>
+    <button class="month-nav" id="month-prev">&#8592;</button>
+    <span class="month-display" id="month-display">September</span>
+    <button class="month-nav" id="month-next">&#8594;</button>
+    <button class="month-clear" id="month-clear">&#xd7;</button>
+  </div>
   <div class="content-row">
     <div class="bed-canvas" id="bed-canvas"></div>
-
     <div class="plant-panel">
       <div class="panel-head">
         <h2 id="panel-title">Plants for this zone</h2>
-        <div class="psub" id="panel-sub">Showing all seasons</div>
+        <div class="psub" id="panel-sub">Click a plant to view its full profile</div>
       </div>
       <div class="plant-list" id="plant-list"></div>
     </div>
@@ -611,23 +642,21 @@ body {
 <!-- Plant selector popover -->
 <div class="popover" id="popover"></div>
 
+<!-- Plant profile modal -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal"></div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ── Bed types ────────────────────────────────
 const BED_TYPES = {
-  rectangular: {
-    label: 'Rectangular',
-    unusable: () => [],
-  },
-  round_corner: {
-    label: 'Round corner',
-    unusable: (cols, rows) => [0, cols - 1, cols * (rows - 1), cols * rows - 1],
-  },
+  rectangular: { label: 'Rectangular', unusable: () => [] },
+  round_corner: { label: 'Round corner', unusable: (cols, rows) => [0, cols-1, cols*(rows-1), cols*rows-1] },
 };
 
 // ── Garden beds ──────────────────────────────
-// position: feet from NW corner of front yard (update with real measurements)
 const BEDS = [
   { id: 1, type: 'round_corner', cols: 8, rows: 4, position: { x: 0, y: 0 } },
   { id: 2, type: 'round_corner', cols: 8, rows: 4, position: { x: 5, y: 0 } },
@@ -635,236 +664,299 @@ const BEDS = [
   { id: 4, type: 'round_corner', cols: 8, rows: 4, position: { x: 5, y: 3 } },
 ];
 
-// ── Plants ───────────────────────────────────
+// ── Plants (panel / bed view) ─────────────────
 const PLANTS = [
-  {
-    id: 'kale',
-    name: 'Kale',
-    sci: 'Brassica oleracea var. sabellica',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '55–65 days',
-    spacing: '18 in',
-    color: '#4A7A44',
-    abbr: 'Ka',
-    pnw: 'Flavor improves after frost. Overwinters with no protection in zone 8b. Cut outer leaves for continuous harvest.',
-  },
-  {
-    id: 'elephant-garlic',
-    name: 'Elephant Garlic',
-    sci: 'Allium ampeloprasum',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring', 'summer'],
-    zones: ['front_beds'],
-    tended_by: null,
-    maturity: '9 months — plant Oct, harvest Jul',
-    spacing: '8 in',
-    color: '#8A7A30',
-    abbr: 'Eg',
-    pnw: 'Plant cloves October–November. Cut scapes in June to redirect energy to the bulb. Cure bulbs 2–4 weeks after harvest.',
-  },
-  {
-    id: 'tomato-stupice',
-    name: 'Stupice Tomato',
-    sci: "Solanum lycopersicum 'Stupice'",
-    type: 'Vegetable',
-    seasons: ['summer', 'fall'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: 'claude',
-    maturity: '52–65 days',
-    spacing: '30 in',
-    color: '#B84040',
-    abbr: 'St',
-    pnw: 'Czech heirloom bred for cool, short-season climates. Best heirloom choice for PNW summers. Indeterminate; needs staking. Start indoors late February.',
-  },
-  {
-    id: 'borage',
-    name: 'Borage',
-    sci: 'Borago officinalis',
-    type: 'Herb',
-    seasons: ['spring', 'summer', 'fall'],
-    zones: ['front_beds'],
-    tended_by: 'claude',
-    maturity: '50–60 days to flower',
-    spacing: '15 in',
-    color: '#4A58A0',
-    abbr: 'Bo',
-    pnw: 'Blue star-shaped flowers are edible. Self-seeds prolifically — thin rather than replant. Strong pollinator magnet.',
-  },
-  {
-    id: 'salal',
-    name: 'Salal',
-    sci: 'Gaultheria shallon',
-    type: 'Native shrub',
-    seasons: ['all'],
-    zones: ['shade_garden'],
-    tended_by: 'jasper',
-    maturity: 'Perennial — 2–3 yr to establish',
-    spacing: '36 in',
-    color: '#5A7A50',
-    abbr: 'Sa',
-    pnw: 'Native to PNW coastal forests. Extremely low maintenance. Berries ripen Aug–Sep, best for jams. Historically significant food plant for Indigenous peoples of the Pacific Coast.',
-  },
-  // ── Fall / winter additions ──────────────────
-  {
-    id: 'mache',
-    name: 'Mâche',
-    sci: 'Valerianella locusta',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '45–60 days',
-    spacing: '6 in',
-    color: '#7AAA80',
-    abbr: 'Mc',
-    pnw: 'Also called corn salad or lamb\'s lettuce. One of the most cold-hardy salad greens — can survive hard freezes. Mild, nutty flavor. Self-seeds readily. Common in French markets, less known here — worth growing.',
-  },
-  {
-    id: 'spinach',
-    name: 'Spinach',
-    sci: 'Spinacia oleracea',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '40–50 days',
-    spacing: '6 in',
-    color: '#2A6040',
-    abbr: 'Sp',
-    pnw: 'Fall is ideal — cool temps prevent the bolting and bitterness of summer spinach. Plants can overwinter and harvest slowly through winter. Savoy (crinkled) types are slightly more cold-hardy.',
-  },
-  {
-    id: 'arugula',
-    name: 'Arugula',
-    sci: 'Eruca sativa',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '35–45 days',
-    spacing: '6 in',
-    color: '#A0B030',
-    abbr: 'Ar',
-    pnw: 'One of the fastest crops you can grow. Peppery flavor intensifies in cold. Bolts quickly in summer heat — fall and spring are its seasons. Self-seeds readily once established.',
-  },
-  {
-    id: 'mizuna',
-    name: 'Mizuna',
-    sci: 'Brassica rapa var. nipposinica',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '40–50 days',
-    spacing: '10 in',
-    color: '#80A858',
-    abbr: 'Mi',
-    pnw: 'Japanese mustard green with feathery, deeply cut leaves. Mild and slightly peppery. Very cold hardy; can handle light snow. Vigorous cut-and-come-again grower through fall and winter.',
-  },
-  {
-    id: 'tatsoi',
-    name: 'Tatsoi',
-    sci: 'Brassica rapa subsp. narinosa',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '45–50 days',
-    spacing: '12 in',
-    color: '#3A7870',
-    abbr: 'Ta',
-    pnw: 'Forms a flat rosette of glossy dark green spoon-shaped leaves — visually striking in a fall bed. Extremely cold hardy down to the mid-20s °F. Flavor sweetens after frost.',
-  },
-  {
-    id: 'claytonia',
-    name: 'Claytonia',
-    sci: 'Claytonia perfoliata',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds', 'shade_garden'],
-    tended_by: null,
-    maturity: '40–50 days',
-    spacing: '4 in',
-    color: '#B8C870',
-    abbr: 'Cl',
-    pnw: 'Miner\'s lettuce — native to the Pacific Northwest. Mild, succulent leaves. Tolerates shade. Self-seeds aggressively once established; you may never need to plant it again. Historically significant food plant.',
-  },
-  {
-    id: 'collard-greens',
-    name: 'Collard Greens',
-    sci: 'Brassica oleracea var. viridis',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter'],
-    zones: ['front_beds'],
-    tended_by: null,
-    maturity: '75–85 days',
-    spacing: '18 in',
-    color: '#386838',
-    abbr: 'Co',
-    pnw: 'The most cold-hardy of the common brassica greens — even hardier than kale in sustained freezes. Flavor sweetens dramatically after frost. Large leaves; needs more vertical space than kale.',
-  },
-  {
-    id: 'green-onion',
-    name: 'Green Onion',
-    sci: 'Allium fistulosum',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds'],
-    tended_by: null,
-    maturity: '60–80 days',
-    spacing: '2 in',
-    color: '#50887A',
-    abbr: 'Go',
-    pnw: 'Bunching onions — perennial, never form a true bulb. Extremely cold hardy; overwinters in zone 8b without protection. Plant in fall for spring harvest. Dense plantings work well; thin and eat the thinnings.',
-  },
-  {
-    id: 'carrot',
-    name: 'Carrot',
-    sci: 'Daucus carota subsp. sativus',
-    type: 'Vegetable',
-    seasons: ['fall', 'winter'],
-    zones: ['front_beds'],
-    tended_by: null,
-    maturity: '70–80 days',
-    spacing: '3 in',
-    color: '#C86820',
-    abbr: 'Ca',
-    pnw: 'Carrots left in the ground through Portland winters sweeten as starches convert to sugar in the cold. Raised beds are ideal — needs deep, loose, rock-free soil. Thin ruthlessly to 3 in or roots fork.',
-  },
-  {
-    id: 'parsley',
-    name: 'Parsley',
-    sci: 'Petroselinum crispum',
-    type: 'Herb',
-    seasons: ['fall', 'winter', 'spring'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '70–90 days',
-    spacing: '8 in',
-    color: '#609040',
-    abbr: 'Pa',
-    pnw: 'Biennial — overwinters reliably in zone 8b and produces heavily in its first spring. Germination is slow (3–6 weeks); soak seeds overnight. Flat-leaf has better flavor; curly is hardier.',
-  },
-  {
-    id: 'cilantro',
-    name: 'Cilantro',
-    sci: 'Coriandrum sativum',
-    type: 'Herb',
-    seasons: ['fall', 'spring'],
-    zones: ['front_beds', 'greenhouse'],
-    tended_by: null,
-    maturity: '45–60 days',
-    spacing: '6 in',
-    color: '#78A840',
-    abbr: 'Ci',
-    pnw: 'Cool weather is its ideal — fall in Portland keeps plants in the leafy stage much longer than summer. Sow through October. Let some plants bolt for coriander seed and beneficial insect habitat.',
-  },
+  { id: 'kale',          name: 'Kale',          sci: 'Brassica oleracea var. sabellica',      type: 'Vegetable', seasons: ['fall','winter','spring'],          zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '55–65 days',                   spacing: '18 in', color: '#4A7A44', abbr: 'Ka', pnw: 'Flavor improves after frost. Overwinters with no protection in zone 8b. Cut outer leaves for continuous harvest.' },
+  { id: 'elephant-garlic', name: 'Elephant Garlic', sci: 'Allium ampeloprasum',               type: 'Vegetable', seasons: ['fall','winter','spring','summer'], zones: ['front_beds'],               tended_by: null,    maturity: '9 months — plant Oct, harvest Jul', spacing: '8 in', color: '#8A7A30', abbr: 'Eg', pnw: 'Plant cloves October–November. Cut scapes in June. Cure bulbs 2–4 weeks after harvest.' },
+  { id: 'tomato-stupice', name: 'Stupice Tomato', sci: "Solanum lycopersicum 'Stupice'",      type: 'Vegetable', seasons: ['summer','fall'],                   zones: ['front_beds','greenhouse'],  tended_by: 'claude', maturity: '52–65 days',                  spacing: '30 in', color: '#B84040', abbr: 'St', pnw: 'Czech heirloom bred for cool, short-season climates. Best heirloom choice for PNW summers. Indeterminate; needs staking. Start indoors late February.' },
+  { id: 'borage',        name: 'Borage',         sci: 'Borago officinalis',                   type: 'Herb',      seasons: ['spring','summer','fall'],          zones: ['front_beds'],               tended_by: 'claude', maturity: '50–60 days to flower',        spacing: '15 in', color: '#4A58A0', abbr: 'Bo', pnw: 'Blue star-shaped flowers are edible. Self-seeds prolifically — thin rather than replant. Strong pollinator magnet.' },
+  { id: 'salal',         name: 'Salal',          sci: 'Gaultheria shallon',                   type: 'Native shrub', seasons: ['all'],                        zones: ['shade_garden'],             tended_by: 'jasper', maturity: 'Perennial — 2–3 yr to establish', spacing: '36 in', color: '#5A7A50', abbr: 'Sa', pnw: 'Native to PNW coastal forests. Extremely low maintenance. Berries ripen Aug–Sep, best for jams. Historically significant food plant.' },
+  { id: 'mache',         name: 'Mâche',          sci: 'Valerianella locusta',                 type: 'Vegetable', seasons: ['fall','winter','spring'],          zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '45–60 days',                   spacing: '6 in',  color: '#7AAA80', abbr: 'Mc', pnw: 'Corn salad / lamb\'s lettuce. One of the most cold-hardy salad greens. Mild, nutty flavor. Self-seeds readily. Worth growing — common in France, rare here.' },
+  { id: 'spinach',       name: 'Spinach',        sci: 'Spinacia oleracea',                    type: 'Vegetable', seasons: ['fall','winter','spring'],          zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '40–50 days',                   spacing: '6 in',  color: '#2A6040', abbr: 'Sp', pnw: 'Fall is ideal — cool temps prevent the bolting that makes summer spinach bitter. Can overwinter and harvest slowly through winter.' },
+  { id: 'arugula',       name: 'Arugula',        sci: 'Eruca sativa',                         type: 'Vegetable', seasons: ['fall','winter','spring'],          zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '35–45 days',                   spacing: '6 in',  color: '#A0B030', abbr: 'Ar', pnw: 'One of the fastest crops you can grow. Peppery flavor intensifies in cold. Bolts quickly in summer. Self-seeds readily once established.' },
+  { id: 'mizuna',        name: 'Mizuna',         sci: 'Brassica rapa var. nipposinica',       type: 'Vegetable', seasons: ['fall','winter'],                  zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '40–50 days',                   spacing: '10 in', color: '#80A858', abbr: 'Mi', pnw: 'Japanese mustard green with feathery leaves. Mild and slightly peppery. Very cold hardy; handles light snow. Vigorous cut-and-come-again grower.' },
+  { id: 'tatsoi',        name: 'Tatsoi',         sci: 'Brassica rapa subsp. narinosa',        type: 'Vegetable', seasons: ['fall','winter'],                  zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '45–50 days',                   spacing: '12 in', color: '#3A7870', abbr: 'Ta', pnw: 'Flat rosette of glossy spoon-shaped leaves — visually striking. Extremely cold hardy down to mid-20s °F. Flavor sweetens after frost.' },
+  { id: 'claytonia',     name: 'Claytonia',      sci: 'Claytonia perfoliata',                 type: 'Vegetable', seasons: ['fall','winter','spring'],          zones: ['front_beds','shade_garden'], tended_by: null,   maturity: '40–50 days',                   spacing: '4 in',  color: '#B8C870', abbr: 'Cl', pnw: 'Miner\'s lettuce — native to the Pacific Northwest. Mild, succulent. Tolerates shade. Self-seeds aggressively; plant once and it returns. Historically significant food plant.' },
+  { id: 'collard-greens', name: 'Collard Greens', sci: 'Brassica oleracea var. viridis',     type: 'Vegetable', seasons: ['fall','winter'],                  zones: ['front_beds'],               tended_by: null,    maturity: '75–85 days',                   spacing: '18 in', color: '#386838', abbr: 'Co', pnw: 'The most cold-hardy common brassica green — even hardier than kale in sustained freezes. Flavor sweetens dramatically after frost. Needs vertical space.' },
+  { id: 'green-onion',   name: 'Green Onion',    sci: 'Allium fistulosum',                    type: 'Vegetable', seasons: ['fall','winter','spring'],          zones: ['front_beds'],               tended_by: null,    maturity: '60–80 days',                   spacing: '2 in',  color: '#50887A', abbr: 'Go', pnw: 'Bunching onions — perennial, never form a true bulb. Extremely cold hardy; overwinters without protection. Plant in fall for spring harvest.' },
+  { id: 'carrot',        name: 'Carrot',         sci: 'Daucus carota subsp. sativus',         type: 'Vegetable', seasons: ['fall','winter'],                  zones: ['front_beds'],               tended_by: null,    maturity: '70–80 days',                   spacing: '3 in',  color: '#C86820', abbr: 'Ca', pnw: 'Left in the ground through Portland winters, carrots sweeten as starches convert to sugar in the cold. Raised beds are ideal. Thin ruthlessly or roots fork.' },
+  { id: 'parsley',       name: 'Parsley',        sci: 'Petroselinum crispum',                 type: 'Herb',      seasons: ['fall','winter','spring'],          zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '70–90 days',                   spacing: '8 in',  color: '#609040', abbr: 'Pa', pnw: 'Biennial — overwinters reliably in zone 8b. Germination is slow (3–6 weeks); soak seeds overnight. Flat-leaf has better flavor; curly is slightly hardier.' },
+  { id: 'cilantro',      name: 'Cilantro',       sci: 'Coriandrum sativum',                   type: 'Herb',      seasons: ['fall','spring'],                  zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '45–60 days',                   spacing: '6 in',  color: '#78A840', abbr: 'Ci', pnw: 'Cool weather is ideal — fall in Portland keeps plants leafy far longer than summer. Sow through October. Let some bolt for coriander seed.' },
 ];
 
 const PLANT_BY_ID = Object.fromEntries(PLANTS.map(p => [p.id, p]));
+
+// ── Plant details (modal only) ────────────────
+// Holds lifecycle, light, water, planting_windows, companions, antagonists.
+// Separated from PLANTS to keep the panel/bed data lean.
+const PLANT_DETAILS = {
+  'kale': {
+    lifecycle: 'biennial', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'borage',          note: 'Repels cabbage worms and aphids; attracts pollinators' },
+      { plant_id: 'elephant-garlic', note: 'Deters aphids and other soft-bodied pests' },
+    ],
+    antagonists: [
+      { plant_id: 'tomato-stupice', note: 'Both heavy feeders; compete for nutrients and may inhibit each other' },
+    ],
+    windows: [
+      { activity: 'start_indoors', month_start: 1, month_end: 2, notes: 'Start 6–8 weeks before last frost for spring transplants' },
+      { activity: 'direct_sow',    month_start: 3, month_end: 4, notes: 'Spring crop; sow when soil can be worked' },
+      { activity: 'direct_sow',    month_start: 7, month_end: 8, notes: 'Sow for fall and winter harvest — most rewarding PNW window' },
+      { activity: 'harvest',       month_start: 10, month_end: 3, notes: 'Harvest outer leaves continuously; plant persists through Portland winters' },
+    ],
+  },
+  'elephant-garlic': {
+    lifecycle: 'biennial', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'kale', note: 'Deters aphids and cabbage pests' },
+    ],
+    antagonists: [
+      { plant_id: 'green-onion', note: 'Alliums in close proximity can compete' },
+    ],
+    windows: [
+      { activity: 'plant',          month_start: 10, month_end: 11, notes: 'Plant cloves pointed-end up, 2–3 inches deep' },
+      { activity: 'harvest_scapes', month_start: 6,  month_end: 6,  notes: 'Cut curling scapes before they straighten; eat or use in cooking' },
+      { activity: 'harvest',        month_start: 7,  month_end: 7,  notes: 'Harvest when lower half of leaves have browned; cure before storing' },
+    ],
+  },
+  'tomato-stupice': {
+    lifecycle: 'annual', light: 'full_sun', water: 'medium_high',
+    companions: [
+      { plant_id: 'borage', note: 'Repels tomato hornworm; attracts pollinators and improves fruit set' },
+    ],
+    antagonists: [
+      { plant_id: 'kale', note: 'Brassicas and tomatoes compete as heavy feeders; may suppress each other' },
+    ],
+    windows: [
+      { activity: 'start_indoors', month_start: 2, month_end: 3, notes: 'Start 6–8 weeks before last frost; use greenhouse to harden off' },
+      { activity: 'transplant',    month_start: 5, month_end: 5, notes: 'After last frost (May 1–15 for Portland); soil should be consistently warm' },
+      { activity: 'harvest',       month_start: 8, month_end: 10, notes: 'Harvest when fully colored and slightly soft; continue until first frost' },
+    ],
+  },
+  'borage': {
+    lifecycle: 'annual', light: 'full_sun', water: 'low_medium',
+    companions: [
+      { plant_id: 'tomato-stupice', note: 'Repels tomato hornworm; strong pollinator attractor improves fruit set' },
+      { plant_id: 'kale',           note: 'Repels cabbage worms; predatory insects patrol nearby brassicas' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 4, month_end: 5, notes: 'Direct sow after last frost; dislikes transplanting' },
+      { activity: 'harvest',    month_start: 6, month_end: 9, notes: 'Pick flowers continuously to extend bloom; harvest in the morning' },
+    ],
+  },
+  'salal': {
+    lifecycle: 'perennial', light: 'partial_shade', water: 'low',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'plant',   month_start: 9, month_end: 11, notes: 'Fall planting preferred — cool, wet season aids establishment' },
+      { activity: 'plant',   month_start: 2, month_end: 3,  notes: 'Early spring also works before summer dry season' },
+      { activity: 'harvest', month_start: 8, month_end: 9,  notes: 'Berries ripe when dark blue-black; taste as you go — they vary' },
+    ],
+  },
+  'mache': {
+    lifecycle: 'annual', light: 'full_sun', water: 'low_medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 9,  month_end: 10, notes: 'Sow densely and thin; tolerates crowding better than most greens' },
+      { activity: 'harvest',    month_start: 11, month_end: 3,  notes: 'Harvest whole rosettes or cut leaves; flavor improves in cold' },
+    ],
+  },
+  'spinach': {
+    lifecycle: 'annual', light: 'full_sun', water: 'medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 8,  month_end: 10, notes: 'Sow every two weeks for continuous harvest; thin to 6 in' },
+      { activity: 'harvest',    month_start: 10, month_end: 3,  notes: 'Harvest outer leaves; inner crown regrows slowly through winter' },
+    ],
+  },
+  'arugula': {
+    lifecycle: 'annual', light: 'full_sun', water: 'medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 8,  month_end: 10, notes: 'Direct sow thickly; cut-and-come-again at 3–4 in height' },
+      { activity: 'harvest',    month_start: 9,  month_end: 12, notes: 'Begin harvesting at 3 in; flavor peaks with cool nights' },
+    ],
+  },
+  'mizuna': {
+    lifecycle: 'annual', light: 'full_sun', water: 'medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 8,  month_end: 10, notes: 'Direct sow; can also transplant in late summer' },
+      { activity: 'harvest',    month_start: 10, month_end: 2,  notes: 'Cut 2 in above soil; plant regrows 2–3 times before quality declines' },
+    ],
+  },
+  'tatsoi': {
+    lifecycle: 'annual', light: 'full_sun', water: 'medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 8,  month_end: 10, notes: 'Give room for the rosette to spread flat' },
+      { activity: 'harvest',    month_start: 10, month_end: 2,  notes: 'Harvest outer leaves; flavor best after first frost' },
+    ],
+  },
+  'claytonia': {
+    lifecycle: 'annual', light: 'partial_shade', water: 'low_medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 9,  month_end: 11, notes: 'Sow thickly; thins itself. Will self-sow from any plants allowed to set seed.' },
+      { activity: 'harvest',    month_start: 11, month_end: 4,  notes: 'Harvest continuously through winter; bolts and disappears when temperatures rise' },
+    ],
+  },
+  'collard-greens': {
+    lifecycle: 'biennial', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'borage', note: 'Borage repels cabbage worms that heavily target collards' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'start_indoors', month_start: 6,  month_end: 7,  notes: 'Start 4–6 weeks before outdoor transplant date' },
+      { activity: 'transplant',    month_start: 7,  month_end: 8,  notes: 'Transplant while warm enough to establish before fall' },
+      { activity: 'harvest',       month_start: 10, month_end: 3,  notes: 'Harvest lower leaves; plant continues producing from the top through winter' },
+    ],
+  },
+  'green-onion': {
+    lifecycle: 'perennial', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'kale',    note: 'Deters aphids and soft-bodied pests from brassicas' },
+      { plant_id: 'spinach', note: 'Good bed companions with similar spacing needs' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 9, month_end: 10, notes: 'Fall sow for overwintering; harvest in spring' },
+      { activity: 'direct_sow', month_start: 3, month_end: 5,  notes: 'Spring sow for summer harvest' },
+      { activity: 'harvest',    month_start: 4, month_end: 6,  notes: 'Pull whole plants or cut tops 2 in above soil; regrows 2–3 times' },
+    ],
+  },
+  'carrot': {
+    lifecycle: 'biennial', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'borage', note: 'Attracts predatory insects that control carrot fly' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 7,  month_end: 8,  notes: 'Keep soil moist until germination (10–21 days); thin to 3 in' },
+      { activity: 'harvest',    month_start: 10, month_end: 2,  notes: 'Harvest as needed through winter; mulch tops to protect from hard freezes' },
+    ],
+  },
+  'parsley': {
+    lifecycle: 'biennial', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'tomato-stupice', note: 'Said to improve tomato flavor; repels asparagus beetle' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'start_indoors', month_start: 7,  month_end: 8,  notes: 'Start 8–10 weeks before transplant; soak seeds overnight' },
+      { activity: 'transplant',    month_start: 9,  month_end: 10, notes: 'Transplant before first frost; will overwinter and flush in spring' },
+      { activity: 'direct_sow',    month_start: 3,  month_end: 4,  notes: 'Spring direct sow works; expect 3–6 weeks to germination' },
+      { activity: 'harvest',       month_start: 11, month_end: 6,  notes: 'Harvest outer stems; never take more than a third at once' },
+    ],
+  },
+  'cilantro': {
+    lifecycle: 'annual', light: 'full_sun', water: 'medium',
+    companions: [
+      { plant_id: 'kale', note: 'Cilantro flowers attract predatory insects that predate cabbage worms' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'direct_sow', month_start: 8,  month_end: 10, notes: 'Sow thickly every two weeks; dislikes transplanting' },
+      { activity: 'harvest',    month_start: 9,  month_end: 12, notes: 'Harvest regularly to delay bolting; once flower stalks appear, collect seed as coriander' },
+    ],
+  },
+};
+
+// ── Label maps ────────────────────────────────
+const LIFECYCLE_LABELS = { annual: 'Annual', biennial: 'Biennial', perennial: 'Perennial' };
+const LIGHT_LABELS     = { full_sun: 'Full sun', partial_shade: 'Partial shade', full_shade: 'Full shade' };
+const WATER_LABELS     = { low: 'Low water', low_medium: 'Low–medium water', medium: 'Medium water', medium_high: 'Medium–high water', high: 'High water' };
+
+const ACTIVITY_META = {
+  start_indoors:  { color: '#B8880A', label: 'Start indoors' },
+  direct_sow:     { color: '#3D7030', label: 'Direct sow' },
+  plant:          { color: '#7A5020', label: 'Plant' },
+  transplant:     { color: '#2A6870', label: 'Transplant' },
+  harvest:        { color: '#A03030', label: 'Harvest' },
+  harvest_scapes: { color: '#B06020', label: 'Harvest scapes' },
+};
+
+// ── Pet safety ────────────────────────────────
+// true = safe, false = keep away, null = research needed
+const PET_SAFETY = {
+  'kale':            { beardie: false,  cat: true  },
+  'elephant-garlic': { beardie: false, cat: false },  // alliums toxic to both
+  'tomato-stupice':  { beardie: true,  cat: false },  // solanine in plant parts harms cats
+  'borage':          { beardie: true,  cat: true  },
+  'salal':           { beardie: null,  cat: null  },  // insufficient data
+  'mache':           { beardie: true,  cat: true  },
+  'spinach':         { beardie: false, cat: true  },  // high oxalates bind calcium — bad for lizards
+  'arugula':         { beardie: true,  cat: true  },
+  'mizuna':          { beardie: true,  cat: true  },
+  'tatsoi':          { beardie: true,  cat: true  },
+  'claytonia':       { beardie: true,  cat: true  },
+  'collard-greens':  { beardie: true,  cat: true  },  // one of the best beardie greens
+  'green-onion':     { beardie: false, cat: false },  // alliums toxic to both
+  'carrot':          { beardie: true,  cat: true  },
+  'parsley':         { beardie: true,  cat: false },  // ASPCA lists parsley as toxic to cats
+  'cilantro':        { beardie: true,  cat: true  },
+};
+
+// Pixel art sprites: 1 = body color (currentColor), 2 = white highlight dot, 0 = transparent
+const CAT_PX = [
+  [1,0,0,0,0,0,0,1],
+  [1,1,0,0,0,0,1,1],
+  [1,1,1,1,1,1,1,1],
+  [1,1,1,1,1,1,1,1],
+  [1,2,1,1,1,1,2,1],
+  [1,1,1,1,1,1,1,1],
+  [0,1,1,1,1,1,1,0],
+  [0,0,1,1,1,1,0,0],
+];
+
+const BEARDIE_PX = [
+  [0,0,0,1,1,1,1,0,0,0,0,0],
+  [0,0,1,1,1,1,1,1,0,0,0,0],
+  [0,1,1,2,1,1,1,1,1,0,0,0],
+  [1,1,1,1,1,1,1,1,1,1,1,0],
+  [0,1,1,1,1,1,1,1,1,1,0,0],
+  [0,0,1,1,1,1,1,1,0,0,0,0],
+  [0,0,0,1,1,1,1,0,0,0,0,0],
+  [0,0,0,0,1,1,0,0,0,0,0,0],
+];
+
+function makePixelSVG(pixels, pixSize) {
+  pixSize = pixSize || 2;
+  const h = pixels.length, w = pixels[0].length;
+  const rects = [];
+  pixels.forEach(function(row, y) {
+    row.forEach(function(val, x) {
+      if (!val) return;
+      const fill = val === 2 ? 'white' : 'currentColor';
+      rects.push('<rect x="' + (x*pixSize) + '" y="' + (y*pixSize) + '" width="' + pixSize + '" height="' + pixSize + '" fill="' + fill + '"/>');
+    });
+  });
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="' + (w*pixSize) + '" height="' + (h*pixSize) + '" shape-rendering="crispEdges" style="display:block;flex-shrink:0">' + rects.join('') + '</svg>';
+}
+
+const CAT_SVG     = makePixelSVG(CAT_PX,     2);
+const BEARDIE_SVG = makePixelSVG(BEARDIE_PX, 2);
+
+function buildPetBadge(svgStr, label, status) {
+  const cls = status === true ? 'badge-pet-safe' : status === false ? 'badge-pet-unsafe' : 'badge-pet-unknown';
+  const badge = document.createElement('span');
+  badge.className = 'badge badge-pet ' + cls;
+  const icon = document.createElement('span');
+  icon.innerHTML = svgStr;
+  badge.appendChild(icon);
+  badge.appendChild(document.createTextNode(label));
+  return badge;
+}
 
 const ZONE_META = {
   front_beds:   { title: 'Front Beds',   meta: '4 beds · 4 ft × 2 ft · full sun' },
@@ -874,48 +966,36 @@ const ZONE_META = {
 };
 
 const SEASON_CHIP_CLASS = { spring: 'cs', summer: 'cu', fall: 'cf', winter: 'cw' };
-const SEASON_LABEL = { spring: 'Spring', summer: 'Summer', fall: 'Fall', winter: 'Winter' };
-const CELL_PX = 30;
+const SEASON_LABEL      = { spring: 'Spring', summer: 'Summer', fall: 'Fall', winter: 'Winter' };
+const MONTHS_ABBR       = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+const CELL_PX           = 30;
+const CURRENT_MONTH     = new Date().getMonth() + 1; // 1-indexed
 
-let currentZone = 'front_beds';
+let currentZone   = 'front_beds';
 let currentSeason = null;
 
 // ── Persistence ──────────────────────────────
-// Same concept as file I/O in C++:
-//   ofstream → localStorage.setItem (serialize to string)
-//   ifstream → localStorage.getItem (deserialize from string)
-//
-// plantings shape: { 'b1-c0': 'kale', 'b2-c5': 'tomato-stupice', ... }
-// Key = "b{bedId}-c{cellIdx}", value = plant id string.
-// A flat map keeps serialization trivial and lookups O(1).
-
+// localStorage mirrors C++ file I/O: setItem = write, getItem = read.
+// JSON.stringify/parse handle serialization (data ↔ string).
 const STORAGE_KEY = 'cc-plantings-v1';
 
 function savePlantings() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(plantings));
-  } catch (e) {
-    // localStorage can be blocked in some browser privacy modes
-    console.warn('Could not save plantings:', e);
-  }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(plantings)); }
+  catch (e) { console.warn('Could not save plantings:', e); }
 }
 
 function loadPlantings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    // raw ? ... : {} mirrors the C++ pattern: if (in.is_open()) { read } else { use default }
-    return raw ? JSON.parse(raw) : {};
-  } catch (e) {
-    return {};
-  }
+    return raw ? JSON.parse(raw) : {};   // raw ? read : use default (like checking is_open() in C++)
+  } catch (e) { return {}; }
 }
 
-// plantings is our in-memory state; it stays in sync with localStorage on every change.
 let plantings = loadPlantings();
 
 function placePlant(bedId, cellIdx, plantId) {
   plantings[`b${bedId}-c${cellIdx}`] = plantId;
-  savePlantings();   // write through on every change — small data, no batching needed
+  savePlantings();
   buildBeds();
 }
 
@@ -925,72 +1005,293 @@ function removePlant(bedId, cellIdx) {
   buildBeds();
 }
 
-function getPlanted(bedId, cellIdx) {
-  return plantings[`b${bedId}-c${cellIdx}`] || null;
+function getPlanted(bedId, cellIdx) { return plantings[`b${bedId}-c${cellIdx}`] || null; }
+
+// ── Modal ─────────────────────────────────────
+const modalBackdrop = document.getElementById('modal-backdrop');
+const modalEl       = document.getElementById('modal');
+
+function openModal(plantId) {
+  const plant   = PLANT_BY_ID[plantId];
+  const details = PLANT_DETAILS[plantId] || {};
+  if (!plant) return;
+
+  modalEl.innerHTML = '';
+
+  // ── Header
+  const header = document.createElement('div');
+  header.className = 'modal-header';
+
+  const headerRow = document.createElement('div');
+  headerRow.className = 'modal-header-row';
+
+  const nameBlock = document.createElement('div');
+  const nameEl = document.createElement('div');
+  nameEl.className = 'modal-name';
+  nameEl.textContent = plant.name;
+  const sciEl = document.createElement('div');
+  sciEl.className = 'modal-sci';
+  sciEl.textContent = plant.sci;
+  nameBlock.appendChild(nameEl);
+  nameBlock.appendChild(sciEl);
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'modal-close';
+  closeBtn.textContent = '×';
+  closeBtn.addEventListener('click', closeModal);
+
+  headerRow.appendChild(nameBlock);
+  headerRow.appendChild(closeBtn);
+  header.appendChild(headerRow);
+
+  // Badges
+  const badges = document.createElement('div');
+  badges.className = 'modal-badges';
+
+  const typeBadge = document.createElement('span');
+  typeBadge.className = 'badge';
+  typeBadge.textContent = plant.type;
+  badges.appendChild(typeBadge);
+
+  if (details.lifecycle) {
+    const lb = document.createElement('span');
+    lb.className = 'badge';
+    lb.textContent = LIFECYCLE_LABELS[details.lifecycle] || details.lifecycle;
+    badges.appendChild(lb);
+  }
+
+  if (details.light) {
+    const lb = document.createElement('span');
+    lb.className = 'badge';
+    lb.textContent = LIGHT_LABELS[details.light] || details.light;
+    badges.appendChild(lb);
+  }
+
+  if (details.water) {
+    const wb = document.createElement('span');
+    wb.className = 'badge';
+    wb.textContent = WATER_LABELS[details.water] || details.water;
+    badges.appendChild(wb);
+  }
+
+  if (plant.tended_by) {
+    const tb = document.createElement('span');
+    tb.className = 'badge ' + (plant.tended_by === 'claude' ? 'badge-indigo' : 'badge-stone');
+    tb.textContent = plant.tended_by === 'claude' ? "Claude's pick" : "Jasper's pick";
+    badges.appendChild(tb);
+  }
+
+  const pet = PET_SAFETY[plant.id];
+  if (pet) {
+    badges.appendChild(buildPetBadge(BEARDIE_SVG, pet.beardie === true ? 'Jazzy safe' : pet.beardie === false ? 'Not for Jazzy' : 'Check for Jazzy', pet.beardie));
+    badges.appendChild(buildPetBadge(CAT_SVG,     pet.cat     === true ? 'Cat safe'   : pet.cat     === false ? 'Keep cats away'  : 'Cat safety ?',    pet.cat));
+  }
+
+  header.appendChild(badges);
+  modalEl.appendChild(header);
+
+  // ── Body
+  const body = document.createElement('div');
+  body.className = 'modal-body';
+
+  // Planting calendar
+  if (details.windows && details.windows.length) {
+    const sec = document.createElement('div');
+    sec.className = 'modal-section';
+    const title = document.createElement('div');
+    title.className = 'modal-section-title';
+    title.textContent = 'Planting calendar';
+    sec.appendChild(title);
+    sec.appendChild(buildCalendar(details.windows));
+    body.appendChild(sec);
+  }
+
+  // Companions
+  if (details.companions && details.companions.length) {
+    const sec = document.createElement('div');
+    sec.className = 'modal-section';
+    const title = document.createElement('div');
+    title.className = 'modal-section-title';
+    title.textContent = 'Companions';
+    sec.appendChild(title);
+    const list = document.createElement('div');
+    list.className = 'relation-list';
+    details.companions.forEach(c => {
+      const ref = PLANT_BY_ID[c.plant_id];
+      list.appendChild(buildRelationItem(ref ? ref.name : c.plant_id, c.note, 'companion'));
+    });
+    sec.appendChild(list);
+    body.appendChild(sec);
+  }
+
+  // Antagonists
+  if (details.antagonists && details.antagonists.length) {
+    const sec = document.createElement('div');
+    sec.className = 'modal-section';
+    const title = document.createElement('div');
+    title.className = 'modal-section-title';
+    title.textContent = 'Antagonists';
+    sec.appendChild(title);
+    const list = document.createElement('div');
+    list.className = 'relation-list';
+    details.antagonists.forEach(a => {
+      const ref = PLANT_BY_ID[a.plant_id];
+      list.appendChild(buildRelationItem(ref ? ref.name : a.plant_id, a.note, 'antagonist'));
+    });
+    sec.appendChild(list);
+    body.appendChild(sec);
+  }
+
+  // PNW notes
+  if (plant.pnw) {
+    const sec = document.createElement('div');
+    sec.className = 'modal-section';
+    const title = document.createElement('div');
+    title.className = 'modal-section-title';
+    title.textContent = 'PNW notes';
+    sec.appendChild(title);
+    const note = document.createElement('div');
+    note.className = 'pnw-modal';
+    note.textContent = plant.pnw;
+    sec.appendChild(note);
+    body.appendChild(sec);
+  }
+
+  modalEl.appendChild(body);
+  modalBackdrop.classList.add('open');
+}
+
+function closeModal() { modalBackdrop.classList.remove('open'); }
+
+modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeModal(); });
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Calendar builder ─────────────────────────
+function buildCalendar(windows) {
+  const cal = document.createElement('div');
+  cal.className = 'cal';
+
+  // Month header
+  const headerRow = document.createElement('div');
+  headerRow.className = 'cal-row cal-header';
+  const spacer = document.createElement('div');
+  spacer.className = 'cal-act-label';
+  headerRow.appendChild(spacer);
+  MONTHS_ABBR.forEach((m, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'cal-month-label' + (i + 1 === CURRENT_MONTH ? ' current' : '');
+    cell.textContent = m;
+    headerRow.appendChild(cell);
+  });
+  cal.appendChild(headerRow);
+
+  // One row per unique activity type, in order of first appearance
+  const seen = [];
+  windows.forEach(w => { if (!seen.includes(w.activity)) seen.push(w.activity); });
+
+  seen.forEach(actType => {
+    const meta     = ACTIVITY_META[actType] || { color: '#888', label: actType };
+    const relevant = windows.filter(w => w.activity === actType);
+
+    const row = document.createElement('div');
+    row.className = 'cal-row';
+
+    const lbl = document.createElement('div');
+    lbl.className = 'cal-act-label';
+    lbl.textContent = meta.label;
+    row.appendChild(lbl);
+
+    MONTHS_ABBR.forEach((_, idx) => {
+      const month = idx + 1;
+      const active = relevant.some(w => {
+        // Handle year-boundary wraps (e.g. harvest Oct–Mar)
+        if (w.month_end >= w.month_start) return month >= w.month_start && month <= w.month_end;
+        return month >= w.month_start || month <= w.month_end;
+      });
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell';
+      if (active) { cell.style.background = meta.color; cell.style.borderRadius = '2px'; }
+      row.appendChild(cell);
+    });
+
+    cal.appendChild(row);
+
+    // Notes for this activity group
+    relevant.forEach(w => {
+      if (w.notes) {
+        const noteRow = document.createElement('div');
+        noteRow.className = 'cal-row';
+        const noteSpan = document.createElement('div');
+        noteSpan.className = 'cal-note-row';
+        noteSpan.textContent = w.notes;
+        // cal-note-row uses grid-column: 1 / -1 to span full width
+        noteRow.appendChild(noteSpan);
+        cal.appendChild(noteRow);
+      }
+    });
+  });
+
+  return cal;
+}
+
+// ── Relation item builder ─────────────────────
+function buildRelationItem(plantName, note, type) {
+  const item = document.createElement('div');
+  item.className = 'relation-item';
+  const dot = document.createElement('div');
+  dot.className = 'relation-dot ' + (type === 'companion' ? 'dot-companion' : 'dot-antagonist');
+  const text = document.createElement('div');
+  const nameEl = document.createElement('div');
+  nameEl.className = 'relation-plant';
+  nameEl.textContent = plantName;
+  const noteEl = document.createElement('div');
+  noteEl.className = 'relation-note';
+  noteEl.textContent = note;
+  text.appendChild(nameEl);
+  text.appendChild(noteEl);
+  item.appendChild(dot);
+  item.appendChild(text);
+  return item;
 }
 
 // ── Popover ───────────────────────────────────
 const popoverEl = document.getElementById('popover');
 
 function openPopover(x, y, bedId, cellIdx) {
-  const existingId = getPlanted(bedId, cellIdx);
-  const zonePlants = PLANTS.filter(p => p.zones.includes(currentZone));
-
+  const existingId  = getPlanted(bedId, cellIdx);
+  const zonePlants  = PLANTS.filter(p => p.zones.includes(currentZone));
   popoverEl.innerHTML = '';
 
   if (existingId) {
-    // Cell is occupied: show what's planted + remove option
     const plant = PLANT_BY_ID[existingId];
     const hdr = document.createElement('div');
     hdr.className = 'popover-header';
     hdr.textContent = 'Planted here';
     popoverEl.appendChild(hdr);
-
     const row = document.createElement('div');
     row.className = 'popover-plant';
-    row.innerHTML = `
-      <div class="p-dot" style="background:${plant.color}"></div>
-      <div>
-        <div class="popover-plant-name">${plant.name}</div>
-        <div class="popover-plant-detail">${plant.spacing} spacing</div>
-      </div>`;
+    row.innerHTML = `<div class="p-dot" style="background:${plant.color}"></div><div><div class="popover-plant-name">${plant.name}</div><div class="popover-plant-detail">${plant.spacing} spacing</div></div>`;
     popoverEl.appendChild(row);
-
     const rem = document.createElement('div');
     rem.className = 'popover-remove';
     rem.textContent = 'Remove planting';
-    rem.addEventListener('click', () => {
-      removePlant(bedId, cellIdx);
-      closePopover();
-    });
+    rem.addEventListener('click', () => { removePlant(bedId, cellIdx); closePopover(); });
     popoverEl.appendChild(rem);
-
   } else {
-    // Cell is empty: offer plants to place
     const hdr = document.createElement('div');
     hdr.className = 'popover-header';
     hdr.textContent = 'Place a plant';
     popoverEl.appendChild(hdr);
-
     zonePlants.forEach(plant => {
       const row = document.createElement('div');
       row.className = 'popover-plant';
-      row.innerHTML = `
-        <div class="p-dot" style="background:${plant.color}"></div>
-        <div>
-          <div class="popover-plant-name">${plant.name}</div>
-          <div class="popover-plant-detail">${plant.spacing} spacing</div>
-        </div>`;
-      row.addEventListener('click', () => {
-        placePlant(bedId, cellIdx, plant.id);
-        closePopover();
-        showToast(`${plant.name} placed in Bed ${bedId}`);
-      });
+      row.innerHTML = `<div class="p-dot" style="background:${plant.color}"></div><div><div class="popover-plant-name">${plant.name}</div><div class="popover-plant-detail">${plant.spacing} spacing</div></div>`;
+      row.addEventListener('click', () => { placePlant(bedId, cellIdx, plant.id); closePopover(); showToast(`${plant.name} placed in Bed ${bedId}`); });
       popoverEl.appendChild(row);
     });
   }
 
-  // Position the popover near the click, keeping it on screen
   popoverEl.classList.add('open');
   const rect = popoverEl.getBoundingClientRect();
   const vw = window.innerWidth, vh = window.innerHeight;
@@ -998,15 +1299,10 @@ function openPopover(x, y, bedId, cellIdx) {
   popoverEl.style.top  = Math.min(y + 8, vh - rect.height - 12) + 'px';
 }
 
-function closePopover() {
-  popoverEl.classList.remove('open');
-  popoverEl.innerHTML = '';
-}
+function closePopover() { popoverEl.classList.remove('open'); popoverEl.innerHTML = ''; }
 
 document.addEventListener('click', e => {
-  if (!popoverEl.contains(e.target) && !e.target.classList.contains('bc')) {
-    closePopover();
-  }
+  if (!popoverEl.contains(e.target) && !e.target.classList.contains('bc')) closePopover();
 });
 
 // ── Bed renderer ─────────────────────────────
@@ -1027,10 +1323,9 @@ function buildBeds() {
   grid.className = 'beds-grid';
 
   BEDS.forEach(bed => {
-    const bedType = BED_TYPES[bed.type] || BED_TYPES.rectangular;
+    const bedType  = BED_TYPES[bed.type] || BED_TYPES.rectangular;
     const unusable = new Set(bedType.unusable(bed.cols, bed.rows));
-    const totalCells = bed.cols * bed.rows;
-    const usable = totalCells - unusable.size;
+    const usable   = bed.cols * bed.rows - unusable.size;
 
     const wrap = document.createElement('div');
     wrap.className = 'bed-wrap';
@@ -1050,8 +1345,8 @@ function buildBeds() {
     bedEl.style.gridTemplateColumns = `repeat(${bed.cols}, ${CELL_PX}px)`;
     bedEl.style.gridTemplateRows    = `repeat(${bed.rows}, ${CELL_PX}px)`;
 
-    for (let i = 0; i < totalCells; i++) {
-      const cell = document.createElement('div');
+    for (let i = 0; i < bed.cols * bed.rows; i++) {
+      const cell      = document.createElement('div');
       const plantedId = getPlanted(bed.id, i);
 
       if (unusable.has(i)) {
@@ -1066,16 +1361,11 @@ function buildBeds() {
           dot.textContent = plant.abbr;
           cell.appendChild(dot);
         }
-        cell.addEventListener('click', e => {
-          openPopover(e.clientX, e.clientY, bed.id, i);
-        });
+        cell.addEventListener('click', e => { closeModal(); openPopover(e.clientX, e.clientY, bed.id, i); });
       } else {
         cell.className = 'bc';
-        cell.addEventListener('click', e => {
-          openPopover(e.clientX, e.clientY, bed.id, i);
-        });
+        cell.addEventListener('click', e => { closeModal(); openPopover(e.clientX, e.clientY, bed.id, i); });
       }
-
       bedEl.appendChild(cell);
     }
 
@@ -1102,16 +1392,149 @@ function buildBeds() {
   canvas.appendChild(note);
 }
 
-// ── Plant list ───────────────────────────────
+// ── Month helpers ─────────────────────────────
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTH_ABB3  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function isMonthInWindow(month, w) {
+  if (w.month_end >= w.month_start) return month >= w.month_start && month <= w.month_end;
+  return month >= w.month_start || month <= w.month_end;
+}
+
+function getWindowUrgency(month, w) {
+  if (w.month_end >= w.month_start) {
+    return w.month_end === month ? 'last' : 'time';
+  }
+  // Year-wrapping window: if we're in the "end" segment, check if it closes this month
+  if (month <= w.month_end) return w.month_end === month ? 'last' : 'time';
+  return 'time'; // in the "start" segment — wraps into next year, still time
+}
+
+// ── On deck view ──────────────────────────────
+let currentMonth = null;
+
+const ACT_ORDER = ['start_indoors','direct_sow','plant','transplant','harvest','harvest_scapes'];
+
+function buildOnDeckView(month) {
+  const list   = document.getElementById('plant-list');
+  const title  = document.getElementById('panel-title');
+  const sub    = document.getElementById('panel-sub');
+
+  title.textContent = MONTH_NAMES[month - 1] + ' · on deck';
+  sub.textContent   = 'Click a plant to view its full profile';
+  list.innerHTML    = '';
+
+  const zonePlants = PLANTS.filter(p => p.zones.includes(currentZone));
+  const groups = {}; // actType → [{plant, w, urgency}]
+
+  zonePlants.forEach(p => {
+    const details = PLANT_DETAILS[p.id];
+    if (!details || !details.windows) return;
+    details.windows.forEach(w => {
+      if (!isMonthInWindow(month, w)) return;
+      if (!groups[w.activity]) groups[w.activity] = [];
+      groups[w.activity].push({ plant: p, w, urgency: getWindowUrgency(month, w) });
+    });
+  });
+
+  let hasAny = false;
+
+  ACT_ORDER.forEach(actType => {
+    if (!groups[actType]) return;
+    hasAny = true;
+
+    const meta = ACTIVITY_META[actType] || { color: '#888', label: actType };
+
+    const groupTitle = document.createElement('div');
+    groupTitle.className = 'ondeck-group-title';
+    const dot = document.createElement('span');
+    dot.className = 'ondeck-group-dot';
+    dot.style.background = meta.color;
+    groupTitle.appendChild(dot);
+    groupTitle.appendChild(document.createTextNode(meta.label));
+    list.appendChild(groupTitle);
+
+    groups[actType].forEach(({ plant, w, urgency }) => {
+      const item = document.createElement('div');
+      item.className = 'ondeck-item';
+      item.addEventListener('click', () => openModal(plant.id));
+
+      const nameEl = document.createElement('div');
+      nameEl.className = 'ondeck-plant-name';
+      nameEl.textContent = plant.name;
+      item.appendChild(nameEl);
+
+      const urg = document.createElement('span');
+      urg.className = 'urgency-badge ' + (urgency === 'last' ? 'urgency-last' : 'urgency-time');
+      urg.textContent = urgency === 'last' ? 'Last chance' : 'Still time (' + MONTH_ABB3[w.month_end - 1] + ')';
+      item.appendChild(urg);
+
+      list.appendChild(item);
+    });
+  });
+
+  if (!hasAny) {
+    const empty = document.createElement('div');
+    empty.style.cssText = 'padding:28px 18px;font-size:13px;color:var(--text-muted);text-align:center;line-height:1.7;';
+    empty.textContent = 'Nothing to sow, plant, or harvest in ' + MONTH_NAMES[month - 1] + ' for this zone.';
+    list.appendChild(empty);
+  }
+}
+
+function enterOnDeck(month) {
+  currentMonth = month;
+  document.getElementById('ondeck-btn').classList.add('active');
+  document.getElementById('month-bar').style.display = 'flex';
+  document.getElementById('month-display').textContent = MONTH_NAMES[month - 1];
+  buildOnDeckView(month);
+}
+
+function exitOnDeck() {
+  currentMonth = null;
+  document.getElementById('ondeck-btn').classList.remove('active');
+  document.getElementById('month-bar').style.display = 'none';
+  buildPlantList();
+}
+
+// ── Card pet safety line ─────────────────────
+function buildCardPetLine(plantId) {
+  const pet = PET_SAFETY[plantId];
+  if (!pet) return null;
+  const span = document.createElement('span');
+  span.style.display = 'flex';
+  span.style.gap = '10px';
+  span.style.flexWrap = 'wrap';
+
+  function indicator(svgStr, label, status) {
+    const el = document.createElement('span');
+    el.style.display = 'inline-flex';
+    el.style.alignItems = 'center';
+    el.style.gap = '4px';
+    el.style.fontSize = '11.5px';
+    el.style.color = status === true ? 'var(--pet-safe-fg)' : status === false ? 'var(--pet-unsafe-fg)' : 'var(--text-muted)';
+    const icon = document.createElement('span');
+    icon.innerHTML = svgStr;
+    el.appendChild(icon);
+    el.appendChild(document.createTextNode(label));
+    return el;
+  }
+
+  span.appendChild(indicator(BEARDIE_SVG, pet.beardie === true ? 'Jazzy safe' : pet.beardie === false ? 'Not for Jazzy' : 'Jazzy?', pet.beardie));
+  span.appendChild(indicator(CAT_SVG,     pet.cat     === true ? 'Cat safe'   : pet.cat     === false ? 'Keep cats away' : 'Cats?',  pet.cat));
+  return span;
+}
+
+// ── Plant list ────────────────────────────────
 function buildPlantList() {
+  if (currentMonth !== null) { buildOnDeckView(currentMonth); return; }
   const list = document.getElementById('plant-list');
   const sub  = document.getElementById('panel-sub');
   list.innerHTML = '';
 
   const zonePlants = PLANTS.filter(p => p.zones.includes(currentZone));
   sub.textContent = currentSeason
-    ? `Filtered: ${currentSeason.charAt(0).toUpperCase() + currentSeason.slice(1)}`
-    : 'Showing all seasons';
+    ? `${currentSeason.charAt(0).toUpperCase() + currentSeason.slice(1)} · click a plant to view its full profile`
+    : 'Click a plant to view its full profile';
 
   if (zonePlants.length === 0) {
     const empty = document.createElement('div');
@@ -1125,22 +1548,20 @@ function buildPlantList() {
     const inSeason = !currentSeason || p.seasons.includes(currentSeason) || p.seasons.includes('all');
     const card = document.createElement('div');
     card.className = 'pcard' + (inSeason ? '' : ' dimmed');
+    card.addEventListener('click', () => openModal(p.id));
 
     const top = document.createElement('div');
     top.className = 'pcard-top';
-
     const name = document.createElement('div');
     name.className = 'pname';
     name.textContent = p.name;
     top.appendChild(name);
-
     if (p.tended_by) {
       const badge = document.createElement('span');
       badge.className = 'tended t-' + p.tended_by;
       badge.textContent = p.tended_by === 'claude' ? 'Claude' : 'Jasper';
       top.appendChild(badge);
     }
-
     card.appendChild(top);
 
     const sci = document.createElement('div');
@@ -1150,12 +1571,10 @@ function buildPlantList() {
 
     const chips = document.createElement('div');
     chips.className = 'chips';
-
     const typeChip = document.createElement('span');
     typeChip.className = 'chip ct';
     typeChip.textContent = p.type;
     chips.appendChild(typeChip);
-
     const seasons = p.seasons.includes('all') ? ['spring','summer','fall','winter'] : p.seasons;
     seasons.forEach(s => {
       const sc = document.createElement('span');
@@ -1163,35 +1582,33 @@ function buildPlantList() {
       sc.textContent = SEASON_LABEL[s];
       chips.appendChild(sc);
     });
-
     card.appendChild(chips);
 
     const det = document.createElement('div');
     det.className = 'pdetail';
+    const petRow = buildCardPetLine(p.id);
     det.innerHTML = `<span>Maturity: ${p.maturity}</span><span>Spacing: ${p.spacing}</span>`;
+    if (petRow) det.appendChild(petRow);
     card.appendChild(det);
 
-    const pnw = document.createElement('div');
-    pnw.className = 'pnw';
-    pnw.textContent = p.pnw;
-    card.appendChild(pnw);
+    const viewLink = document.createElement('div');
+    viewLink.className = 'view-profile';
+    viewLink.textContent = 'View full profile →';
+    card.appendChild(viewLink);
 
     list.appendChild(card);
   });
 }
 
-// ── Zone switching ───────────────────────────
+// ── Zone switching ────────────────────────────
 function setZone(zoneId) {
   currentZone = zoneId;
-  closePopover();
-  document.querySelectorAll('.zone-item').forEach(el => {
-    el.classList.toggle('active', el.dataset.zone === zoneId);
-  });
+  closePopover(); closeModal();
+  document.querySelectorAll('.zone-item').forEach(el => el.classList.toggle('active', el.dataset.zone === zoneId));
   const z = ZONE_META[zoneId];
   document.getElementById('zone-title').textContent = z.title;
   document.getElementById('zone-meta').textContent  = z.meta;
-  buildBeds();
-  buildPlantList();
+  buildBeds(); buildPlantList();
 }
 
 document.getElementById('zone-nav').addEventListener('click', e => {
@@ -1199,29 +1616,23 @@ document.getElementById('zone-nav').addEventListener('click', e => {
   if (item) setZone(item.dataset.zone);
 });
 
-// ── Season filter ────────────────────────────
+// ── Season filter ─────────────────────────────
 document.querySelectorAll('.s-chip').forEach(btn => {
   btn.addEventListener('click', () => {
     const s = btn.dataset.season;
-    if (currentSeason === s) {
-      currentSeason = null;
-      btn.className = 's-chip';
-    } else {
-      currentSeason = s;
-      document.querySelectorAll('.s-chip').forEach(b => b.className = 's-chip');
-      btn.className = `s-chip on-${s}`;
-    }
+    if (currentSeason === s) { currentSeason = null; btn.className = 's-chip'; }
+    else { currentSeason = s; document.querySelectorAll('.s-chip').forEach(b => b.className = 's-chip'); btn.className = `s-chip on-${s}`; }
     buildPlantList();
   });
 });
 
-// ── Theme toggle ─────────────────────────────
+// ── Theme toggle ──────────────────────────────
 document.getElementById('theme-btn').addEventListener('click', () => {
   const root = document.documentElement;
   const cur = root.getAttribute('data-theme');
-  if (cur === 'dark')       root.setAttribute('data-theme', 'light');
+  if (cur === 'dark') root.setAttribute('data-theme', 'light');
   else if (cur === 'light') root.removeAttribute('data-theme');
-  else                      root.setAttribute('data-theme', 'dark');
+  else root.setAttribute('data-theme', 'dark');
 });
 
 // ── Toast ─────────────────────────────────────
@@ -1234,7 +1645,25 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-// ── Init ─────────────────────────────────────
+// ── On deck controls ──────────────────────────
+document.getElementById('ondeck-btn').addEventListener('click', () => {
+  if (currentMonth !== null) exitOnDeck();
+  else enterOnDeck(CURRENT_MONTH);
+});
+
+document.getElementById('month-prev').addEventListener('click', () => {
+  const m = currentMonth === 1 ? 12 : currentMonth - 1;
+  enterOnDeck(m);
+});
+
+document.getElementById('month-next').addEventListener('click', () => {
+  const m = currentMonth === 12 ? 1 : currentMonth + 1;
+  enterOnDeck(m);
+});
+
+document.getElementById('month-clear').addEventListener('click', exitOnDeck);
+
+// ── Init ──────────────────────────────────────
 buildBeds();
 buildPlantList();
 </script>
