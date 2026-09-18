@@ -13,7 +13,6 @@
   --text-primary:   #1A2418;
   --text-secondary: #4A5C48;
   --text-muted:     #7A8A78;
-  --green-deep:     #253C22;
   --green-mid:      #3D6438;
   --green-sage:     #7A9C74;
   --indigo:         #4A5888;
@@ -46,7 +45,6 @@
     --text-primary:   #E2E8DF;
     --text-secondary: #9AAA94;
     --text-muted:     #627060;
-    --green-deep:     #8AB884;
     --green-mid:      #6A9864;
     --green-sage:     #4A7444;
     --indigo:         #8890C8;
@@ -73,7 +71,6 @@
   --text-primary:   #E2E8DF;
   --text-secondary: #9AAA94;
   --text-muted:     #627060;
-  --green-deep:     #8AB884;
   --green-mid:      #6A9864;
   --green-sage:     #4A7444;
   --indigo:         #8890C8;
@@ -135,10 +132,7 @@ body {
   margin-top: 4px;
 }
 
-.nav-section {
-  padding: 14px 0 8px;
-  flex: 1;
-}
+.nav-section { padding: 14px 0 8px; flex: 1; }
 
 .nav-label {
   font-size: 11.5px;
@@ -161,10 +155,7 @@ body {
   user-select: none;
 }
 
-.zone-item:hover {
-  background: var(--surface-raised);
-  color: var(--text-primary);
-}
+.zone-item:hover { background: var(--surface-raised); color: var(--text-primary); }
 
 .zone-item.active {
   background: var(--surface-raised);
@@ -174,8 +165,7 @@ body {
 }
 
 .zone-pip {
-  width: 8px;
-  height: 8px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--border);
   flex-shrink: 0;
@@ -183,7 +173,6 @@ body {
 }
 
 .zone-item.active .zone-pip { background: var(--green-mid); }
-
 .zone-name { font-size: 14.5px; }
 
 .zone-desc {
@@ -201,11 +190,7 @@ body {
   gap: 10px;
 }
 
-.scale-note {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
+.scale-note { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
 .legend-row {
   display: flex;
@@ -216,8 +201,7 @@ body {
 }
 
 .legend-swatch {
-  width: 14px;
-  height: 14px;
+  width: 14px; height: 14px;
   border-radius: 2px;
   flex-shrink: 0;
 }
@@ -225,9 +209,6 @@ body {
 .swatch-unusable { background: var(--unusable-bg); border: 1px solid var(--border); }
 
 .theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   background: none;
   border: 1px solid var(--border);
   color: var(--text-muted);
@@ -240,19 +221,10 @@ body {
   width: 100%;
 }
 
-.theme-toggle:hover {
-  background: var(--surface-raised);
-  color: var(--text-secondary);
-}
+.theme-toggle:hover { background: var(--surface-raised); color: var(--text-secondary); }
 
 /* ── Main ─────────────────────────── */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  min-width: 0;
-}
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
 
 .zone-header {
   padding: 16px 28px 14px;
@@ -268,13 +240,9 @@ body {
   font-family: 'Fraunces', Georgia, serif;
   font-size: 24px;
   font-weight: 400;
-  color: var(--text-primary);
 }
 
-.zone-meta-text {
-  font-size: 13px;
-  color: var(--text-muted);
-}
+.zone-meta-text { font-size: 13px; color: var(--text-muted); }
 
 .season-bar {
   display: flex;
@@ -313,11 +281,7 @@ body {
 .s-chip.on-fall   { background: var(--chip-fall-bg);   border-color: var(--fall);   color: var(--fall);   }
 .s-chip.on-winter { background: var(--chip-winter-bg); border-color: var(--winter); color: var(--winter); }
 
-.content-row {
-  flex: 1;
-  display: flex;
-  overflow: hidden;
-}
+.content-row { flex: 1; display: flex; overflow: hidden; }
 
 /* ── Bed canvas ───────────────────── */
 .bed-canvas {
@@ -327,56 +291,56 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   gap: 20px;
 }
 
-.beds-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 44px;
-}
+.beds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
 
-.bed-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
+.bed-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 
-.bed-label {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.03em;
-}
-
-.bed-type-tag {
-  font-size: 11px;
-  color: var(--text-muted);
-  opacity: 0.75;
-}
+.bed-label { font-size: 12.5px; font-weight: 500; color: var(--text-muted); }
+.bed-type-tag { font-size: 11px; color: var(--text-muted); opacity: 0.75; }
 
 .bed {
   display: grid;
   background: var(--soil-faint);
   border: 2px solid var(--soil-mid);
   border-radius: 3px;
-  cursor: crosshair;
   position: relative;
 }
 
+/* Individual cells */
 .bc {
   border-right: 1px solid var(--soil-grid);
   border-bottom: 1px solid var(--soil-grid);
   transition: background 0.08s;
+  position: relative;
+  cursor: crosshair;
 }
 
-.bc:not(.bc-unusable):hover { background: rgba(140, 90, 40, 0.12); }
+.bc:not(.bc-unusable):not(.bc-placed):hover { background: rgba(140, 90, 40, 0.12); }
 
 .bc-unusable {
   background: var(--unusable-bg);
   cursor: not-allowed;
+}
+
+/* Placed plant indicator — a colored circle filling most of the cell */
+.bc-placed { cursor: pointer; }
+
+.plant-dot {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  letter-spacing: 0;
 }
 
 .bed-ruler {
@@ -385,11 +349,7 @@ body {
   padding: 0 1px;
 }
 
-.ruler-tick {
-  font-size: 10.5px;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
+.ruler-tick { font-size: 10.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
 .canvas-note {
   font-size: 13px;
@@ -418,6 +378,66 @@ body {
 
 .zone-placeholder .ph-sub { font-size: 13.5px; line-height: 1.6; }
 
+/* ── Plant selector popover ───────── */
+.popover {
+  position: fixed;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+  z-index: 300;
+  min-width: 210px;
+  overflow: hidden;
+  display: none;
+}
+
+.popover.open { display: block; }
+
+.popover-header {
+  padding: 9px 14px 7px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.popover-plant {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.1s;
+}
+
+.popover-plant:last-of-type { border-bottom: none; }
+.popover-plant:hover { background: var(--surface); }
+
+.p-dot {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.popover-plant-name { font-size: 14px; color: var(--text-primary); }
+.popover-plant-detail { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+.popover-remove {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: var(--fall);
+  transition: background 0.1s;
+  gap: 8px;
+}
+
+.popover-remove:hover { background: var(--chip-fall-bg); }
+
 /* ── Plant panel ──────────────────── */
 .plant-panel {
   width: var(--panel-w);
@@ -439,14 +459,9 @@ body {
   font-family: 'Fraunces', Georgia, serif;
   font-size: 15.5px;
   font-weight: 600;
-  color: var(--text-primary);
 }
 
-.panel-head .psub {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
+.panel-head .psub { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
 
 .plant-list { flex: 1; overflow-y: auto; }
 
@@ -459,19 +474,13 @@ body {
 .pcard:hover { background: var(--surface-raised); }
 .pcard.dimmed { opacity: 0.3; }
 
-.pcard-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-}
+.pcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
 
 .pname {
   font-family: 'Fraunces', Georgia, serif;
   font-size: 17px;
   font-weight: 400;
   line-height: 1.2;
-  color: var(--text-primary);
 }
 
 .tended {
@@ -488,26 +497,11 @@ body {
 .t-claude { background: var(--indigo-light); color: var(--indigo); }
 .t-jasper { background: var(--stone-light);  color: var(--stone);  }
 
-.psci {
-  font-size: 12.5px;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
+.psci { font-size: 12.5px; font-style: italic; color: var(--text-muted); margin-top: 2px; }
 
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 8px;
-}
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
 
-.chip {
-  font-size: 11.5px;
-  font-weight: 500;
-  padding: 2px 9px;
-  border-radius: 10px;
-}
+.chip { font-size: 11.5px; font-weight: 500; padding: 2px 9px; border-radius: 10px; }
 
 .cs { background: var(--chip-spring-bg); color: var(--spring); }
 .cu { background: var(--chip-summer-bg); color: var(--summer); }
@@ -515,14 +509,7 @@ body {
 .cw { background: var(--chip-winter-bg); color: var(--winter); }
 .ct { background: var(--border-subtle);  color: var(--text-secondary); }
 
-.pdetail {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  margin-top: 7px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+.pdetail { font-size: 12.5px; color: var(--text-muted); margin-top: 7px; display: flex; flex-direction: column; gap: 2px; }
 
 .pnw {
   margin-top: 8px;
@@ -556,7 +543,7 @@ body {
 .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 </style>
 
-<!-- ── Sidebar ── -->
+<!-- Sidebar -->
 <div class="sidebar">
   <div class="app-brand">
     <h1>Cultivation<br>Companion</h1>
@@ -565,28 +552,20 @@ body {
 
   <nav class="nav-section" id="zone-nav">
     <div class="nav-label">Garden Zones</div>
-
     <div class="zone-item active" data-zone="front_beds">
-      <div class="zone-pip"></div>
-      <span class="zone-name">Front Beds</span>
+      <div class="zone-pip"></div><span class="zone-name">Front Beds</span>
     </div>
     <div class="zone-desc">4 raised beds · full sun</div>
-
     <div class="zone-item" data-zone="greenhouse">
-      <div class="zone-pip"></div>
-      <span class="zone-name">Greenhouse</span>
+      <div class="zone-pip"></div><span class="zone-name">Greenhouse</span>
     </div>
     <div class="zone-desc">~8–10 × 4 ft · season extension</div>
-
     <div class="zone-item" data-zone="shade_garden">
-      <div class="zone-pip"></div>
-      <span class="zone-name">Shade Garden</span>
+      <div class="zone-pip"></div><span class="zone-name">Shade Garden</span>
     </div>
     <div class="zone-desc">Native understory · partial shade</div>
-
     <div class="zone-item" data-zone="backyard">
-      <div class="zone-pip"></div>
-      <span class="zone-name">Backyard</span>
+      <div class="zone-pip"></div><span class="zone-name">Backyard</span>
     </div>
     <div class="zone-desc">Fruit trees · lawn area</div>
   </nav>
@@ -601,7 +580,7 @@ body {
   </div>
 </div>
 
-<!-- ── Main ── -->
+<!-- Main -->
 <div class="main">
   <div class="zone-header">
     <span class="zone-title" id="zone-title">Front Beds</span>
@@ -629,12 +608,13 @@ body {
   </div>
 </div>
 
+<!-- Plant selector popover -->
+<div class="popover" id="popover"></div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ── Bed types ────────────────────────────────
-// unusableFn(cols, rows) returns array of flat cell indices that are
-// outside the plantable area. Extend this object for new bed shapes.
 const BED_TYPES = {
   rectangular: {
     label: 'Rectangular',
@@ -642,14 +622,12 @@ const BED_TYPES = {
   },
   round_corner: {
     label: 'Round corner',
-    // Marks the 4 corner cells as unusable (approx. 6-inch radius)
     unusable: (cols, rows) => [0, cols - 1, cols * (rows - 1), cols * rows - 1],
   },
 };
 
 // ── Garden beds ──────────────────────────────
-// position: feet from NW corner of front yard (placeholder — update with measurements)
-// cols × rows at 6 in/cell: 8 × 4 = 4 ft × 2 ft
+// position: feet from NW corner of front yard (update with real measurements)
 const BEDS = [
   { id: 1, type: 'round_corner', cols: 8, rows: 4, position: { x: 0, y: 0 } },
   { id: 2, type: 'round_corner', cols: 8, rows: 4, position: { x: 5, y: 0 } },
@@ -669,7 +647,9 @@ const PLANTS = [
     tended_by: null,
     maturity: '55–65 days',
     spacing: '18 in',
-    pnw: 'Flavor improves after frost. Overwinters in the ground with no protection in zone 8b. Cut outer leaves for continuous harvest.',
+    color: '#4A7A44',
+    abbr: 'Ka',
+    pnw: 'Flavor improves after frost. Overwinters with no protection in zone 8b. Cut outer leaves for continuous harvest.',
   },
   {
     id: 'elephant-garlic',
@@ -681,7 +661,9 @@ const PLANTS = [
     tended_by: null,
     maturity: '9 months — plant Oct, harvest Jul',
     spacing: '8 in',
-    pnw: 'Plant cloves October–November. Cut scapes in June to redirect energy to the bulb. Cure harvested bulbs 2–4 weeks before storing.',
+    color: '#8A7A30',
+    abbr: 'Eg',
+    pnw: 'Plant cloves October–November. Cut scapes in June to redirect energy to the bulb. Cure bulbs 2–4 weeks after harvest.',
   },
   {
     id: 'tomato-stupice',
@@ -693,7 +675,9 @@ const PLANTS = [
     tended_by: 'claude',
     maturity: '52–65 days',
     spacing: '30 in',
-    pnw: 'Czech heirloom bred for cool, short-season climates — one of the most reliable heirlooms for PNW summers. Indeterminate; needs staking. Start indoors late February.',
+    color: '#B84040',
+    abbr: 'St',
+    pnw: 'Czech heirloom bred for cool, short-season climates. Best heirloom choice for PNW summers. Indeterminate; needs staking. Start indoors late February.',
   },
   {
     id: 'borage',
@@ -705,7 +689,9 @@ const PLANTS = [
     tended_by: 'claude',
     maturity: '50–60 days to flower',
     spacing: '15 in',
-    pnw: 'Blue star-shaped flowers are edible. Self-seeds prolifically — thin rather than replant. Strong pollinator magnet; bees especially.',
+    color: '#4A58A0',
+    abbr: 'Bo',
+    pnw: 'Blue star-shaped flowers are edible. Self-seeds prolifically — thin rather than replant. Strong pollinator magnet.',
   },
   {
     id: 'salal',
@@ -717,15 +703,19 @@ const PLANTS = [
     tended_by: 'jasper',
     maturity: 'Perennial — 2–3 yr to establish',
     spacing: '36 in',
-    pnw: 'Native to PNW coastal forests. Extremely low maintenance once established. Berries ripen Aug–Sep, best for jams. Historically significant food plant for Indigenous peoples of the Pacific Coast.',
+    color: '#5A7A50',
+    abbr: 'Sa',
+    pnw: 'Native to PNW coastal forests. Extremely low maintenance. Berries ripen Aug–Sep, best for jams. Historically significant food plant for Indigenous peoples of the Pacific Coast.',
   },
 ];
 
+const PLANT_BY_ID = Object.fromEntries(PLANTS.map(p => [p.id, p]));
+
 const ZONE_META = {
-  front_beds:   { title: 'Front Beds',    meta: '4 beds · 4 ft × 2 ft · full sun' },
-  greenhouse:   { title: 'Greenhouse',    meta: '~8–10 × 4 ft · season extension · sheltered' },
-  shade_garden: { title: 'Shade Garden',  meta: 'Side yard · partial shade · native understory' },
-  backyard:     { title: 'Backyard',      meta: 'Fruit trees · lawn · open' },
+  front_beds:   { title: 'Front Beds',   meta: '4 beds · 4 ft × 2 ft · full sun' },
+  greenhouse:   { title: 'Greenhouse',   meta: '~8–10 × 4 ft · season extension · sheltered' },
+  shade_garden: { title: 'Shade Garden', meta: 'Side yard · partial shade · native understory' },
+  backyard:     { title: 'Backyard',     meta: 'Fruit trees · lawn · open' },
 };
 
 const SEASON_CHIP_CLASS = { spring: 'cs', summer: 'cu', fall: 'cf', winter: 'cw' };
@@ -734,6 +724,135 @@ const CELL_PX = 30;
 
 let currentZone = 'front_beds';
 let currentSeason = null;
+
+// ── Persistence ──────────────────────────────
+// Same concept as file I/O in C++:
+//   ofstream → localStorage.setItem (serialize to string)
+//   ifstream → localStorage.getItem (deserialize from string)
+//
+// plantings shape: { 'b1-c0': 'kale', 'b2-c5': 'tomato-stupice', ... }
+// Key = "b{bedId}-c{cellIdx}", value = plant id string.
+// A flat map keeps serialization trivial and lookups O(1).
+
+const STORAGE_KEY = 'cc-plantings-v1';
+
+function savePlantings() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(plantings));
+  } catch (e) {
+    // localStorage can be blocked in some browser privacy modes
+    console.warn('Could not save plantings:', e);
+  }
+}
+
+function loadPlantings() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    // raw ? ... : {} mirrors the C++ pattern: if (in.is_open()) { read } else { use default }
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+// plantings is our in-memory state; it stays in sync with localStorage on every change.
+let plantings = loadPlantings();
+
+function placePlant(bedId, cellIdx, plantId) {
+  plantings[`b${bedId}-c${cellIdx}`] = plantId;
+  savePlantings();   // write through on every change — small data, no batching needed
+  buildBeds();
+}
+
+function removePlant(bedId, cellIdx) {
+  delete plantings[`b${bedId}-c${cellIdx}`];
+  savePlantings();
+  buildBeds();
+}
+
+function getPlanted(bedId, cellIdx) {
+  return plantings[`b${bedId}-c${cellIdx}`] || null;
+}
+
+// ── Popover ───────────────────────────────────
+const popoverEl = document.getElementById('popover');
+
+function openPopover(x, y, bedId, cellIdx) {
+  const existingId = getPlanted(bedId, cellIdx);
+  const zonePlants = PLANTS.filter(p => p.zones.includes(currentZone));
+
+  popoverEl.innerHTML = '';
+
+  if (existingId) {
+    // Cell is occupied: show what's planted + remove option
+    const plant = PLANT_BY_ID[existingId];
+    const hdr = document.createElement('div');
+    hdr.className = 'popover-header';
+    hdr.textContent = 'Planted here';
+    popoverEl.appendChild(hdr);
+
+    const row = document.createElement('div');
+    row.className = 'popover-plant';
+    row.innerHTML = `
+      <div class="p-dot" style="background:${plant.color}"></div>
+      <div>
+        <div class="popover-plant-name">${plant.name}</div>
+        <div class="popover-plant-detail">${plant.spacing} spacing</div>
+      </div>`;
+    popoverEl.appendChild(row);
+
+    const rem = document.createElement('div');
+    rem.className = 'popover-remove';
+    rem.textContent = 'Remove planting';
+    rem.addEventListener('click', () => {
+      removePlant(bedId, cellIdx);
+      closePopover();
+    });
+    popoverEl.appendChild(rem);
+
+  } else {
+    // Cell is empty: offer plants to place
+    const hdr = document.createElement('div');
+    hdr.className = 'popover-header';
+    hdr.textContent = 'Place a plant';
+    popoverEl.appendChild(hdr);
+
+    zonePlants.forEach(plant => {
+      const row = document.createElement('div');
+      row.className = 'popover-plant';
+      row.innerHTML = `
+        <div class="p-dot" style="background:${plant.color}"></div>
+        <div>
+          <div class="popover-plant-name">${plant.name}</div>
+          <div class="popover-plant-detail">${plant.spacing} spacing</div>
+        </div>`;
+      row.addEventListener('click', () => {
+        placePlant(bedId, cellIdx, plant.id);
+        closePopover();
+        showToast(`${plant.name} placed in Bed ${bedId}`);
+      });
+      popoverEl.appendChild(row);
+    });
+  }
+
+  // Position the popover near the click, keeping it on screen
+  popoverEl.classList.add('open');
+  const rect = popoverEl.getBoundingClientRect();
+  const vw = window.innerWidth, vh = window.innerHeight;
+  popoverEl.style.left = Math.min(x + 8, vw - rect.width - 12) + 'px';
+  popoverEl.style.top  = Math.min(y + 8, vh - rect.height - 12) + 'px';
+}
+
+function closePopover() {
+  popoverEl.classList.remove('open');
+  popoverEl.innerHTML = '';
+}
+
+document.addEventListener('click', e => {
+  if (!popoverEl.contains(e.target) && !e.target.classList.contains('bc')) {
+    closePopover();
+  }
+});
 
 // ── Bed renderer ─────────────────────────────
 function buildBeds() {
@@ -778,23 +897,38 @@ function buildBeds() {
 
     for (let i = 0; i < totalCells; i++) {
       const cell = document.createElement('div');
-      cell.className = 'bc' + (unusable.has(i) ? ' bc-unusable' : '');
-      if (!unusable.has(i)) {
-        cell.dataset.bed = bed.id;
-        cell.dataset.idx = i;
-        cell.dataset.x   = bed.position.x;
-        cell.dataset.y   = bed.position.y;
-        cell.addEventListener('click', onCellClick);
+      const plantedId = getPlanted(bed.id, i);
+
+      if (unusable.has(i)) {
+        cell.className = 'bc bc-unusable';
+      } else if (plantedId) {
+        cell.className = 'bc bc-placed';
+        const plant = PLANT_BY_ID[plantedId];
+        if (plant) {
+          const dot = document.createElement('div');
+          dot.className = 'plant-dot';
+          dot.style.background = plant.color;
+          dot.textContent = plant.abbr;
+          cell.appendChild(dot);
+        }
+        cell.addEventListener('click', e => {
+          openPopover(e.clientX, e.clientY, bed.id, i);
+        });
+      } else {
+        cell.className = 'bc';
+        cell.addEventListener('click', e => {
+          openPopover(e.clientX, e.clientY, bed.id, i);
+        });
       }
+
       bedEl.appendChild(cell);
     }
 
     wrap.appendChild(bedEl);
 
-    const rulerWidth = bed.cols * CELL_PX;
     const ruler = document.createElement('div');
     ruler.className = 'bed-ruler';
-    ruler.style.width = rulerWidth + 'px';
+    ruler.style.width = (bed.cols * CELL_PX) + 'px';
     for (let ft = 0; ft <= bed.cols / 2; ft++) {
       const t = document.createElement('span');
       t.className = 'ruler-tick';
@@ -802,7 +936,6 @@ function buildBeds() {
       ruler.appendChild(t);
     }
     wrap.appendChild(ruler);
-
     grid.appendChild(wrap);
   });
 
@@ -810,7 +943,7 @@ function buildBeds() {
 
   const note = document.createElement('div');
   note.className = 'canvas-note';
-  note.innerHTML = 'Each cell = 6 in × 6 in &nbsp;·&nbsp; Click a cell to plan a planting <em>(coming soon)</em><br>Bed positions stored as yard coordinates for future satellite overlay.';
+  note.innerHTML = 'Click any cell to place or remove a plant &nbsp;·&nbsp; Placements are saved automatically';
   canvas.appendChild(note);
 }
 
@@ -834,10 +967,7 @@ function buildPlantList() {
   }
 
   zonePlants.forEach(p => {
-    const inSeason = !currentSeason
-      || p.seasons.includes(currentSeason)
-      || p.seasons.includes('all');
-
+    const inSeason = !currentSeason || p.seasons.includes(currentSeason) || p.seasons.includes('all');
     const card = document.createElement('div');
     card.className = 'pcard' + (inSeason ? '' : ' dimmed');
 
@@ -871,10 +1001,7 @@ function buildPlantList() {
     typeChip.textContent = p.type;
     chips.appendChild(typeChip);
 
-    const seasons = p.seasons.includes('all')
-      ? ['spring', 'summer', 'fall', 'winter']
-      : p.seasons;
-
+    const seasons = p.seasons.includes('all') ? ['spring','summer','fall','winter'] : p.seasons;
     seasons.forEach(s => {
       const sc = document.createElement('span');
       sc.className = 'chip ' + SEASON_CHIP_CLASS[s];
@@ -901,6 +1028,7 @@ function buildPlantList() {
 // ── Zone switching ───────────────────────────
 function setZone(zoneId) {
   currentZone = zoneId;
+  closePopover();
   document.querySelectorAll('.zone-item').forEach(el => {
     el.classList.toggle('active', el.dataset.zone === zoneId);
   });
@@ -932,21 +1060,6 @@ document.querySelectorAll('.s-chip').forEach(btn => {
   });
 });
 
-// ── Cell click ───────────────────────────────
-let toastTimer;
-function onCellClick(e) {
-  const { bed, idx } = e.currentTarget.dataset;
-  showToast(`Bed ${bed} · cell ${parseInt(idx) + 1} · Plant placement coming soon`);
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
-}
-
 // ── Theme toggle ─────────────────────────────
 document.getElementById('theme-btn').addEventListener('click', () => {
   const root = document.documentElement;
@@ -955,6 +1068,16 @@ document.getElementById('theme-btn').addEventListener('click', () => {
   else if (cur === 'light') root.removeAttribute('data-theme');
   else                      root.setAttribute('data-theme', 'dark');
 });
+
+// ── Toast ─────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
 
 // ── Init ─────────────────────────────────────
 buildBeds();
