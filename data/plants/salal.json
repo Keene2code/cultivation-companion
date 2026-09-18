@@ -1,0 +1,41 @@
+{
+  "id": "salal",
+  "name": "Salal",
+  "scientific_name": "Gaultheria shallon",
+  "type": "native_shrub",
+  "lifecycle": "perennial",
+  "days_to_maturity": null,
+  "spacing_in": 36,
+  "height_in": 48,
+  "light": "partial_shade",
+  "water": "low",
+  "suitable_zones": ["shade_garden"],
+  "companions": [
+    { "plant_id": "sword-fern", "note": "Classic PNW understory pairing; similar light and moisture preferences" },
+    { "plant_id": "oregon-grape", "note": "Native companion; both thrive in dry shade and support the same pollinator communities" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": "jasper",
+  "pnw_notes": "Native to Pacific Northwest coastal forests from Alaska to California. Extremely low maintenance once established — drought tolerant, deer resistant, and evergreen. Berries ripen August–September: mealy texture fresh, excellent for jams and drying. Historically one of the most important food plants for Indigenous peoples of the Pacific Coast. Takes 2–3 years to fully establish; slow to start, persistent once rooted. The leathery leaves are commonly used as florist greens.",
+  "planting_windows": [
+    {
+      "activity": "plant",
+      "month_start": 9,
+      "month_end": 11,
+      "notes": "Fall planting preferred — cool, wet season aids establishment"
+    },
+    {
+      "activity": "plant",
+      "month_start": 2,
+      "month_end": 3,
+      "notes": "Early spring planting also works before summer dry season"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 8,
+      "month_end": 9,
+      "notes": "Berries ripe when dark blue-black; taste as you go — they vary by plant"
+    }
+  ]
+}

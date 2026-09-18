@@ -1,0 +1,44 @@
+{
+  "id": "tomato-stupice",
+  "name": "Stupice Tomato",
+  "scientific_name": "Solanum lycopersicum 'Stupice'",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [52, 65],
+  "spacing_in": 30,
+  "height_in": 60,
+  "light": "full_sun",
+  "water": "medium_high",
+  "suitable_zones": ["front_beds", "greenhouse"],
+  "companions": [
+    { "plant_id": "borage", "note": "Repels tomato hornworm; attracts pollinators and predatory insects. Classic pairing." },
+    { "plant_id": "basil", "note": "May improve flavor; repels aphids and whitefly" }
+  ],
+  "antagonists": [
+    { "plant_id": "kale", "note": "Brassicas and tomatoes compete as heavy feeders and may suppress each other" },
+    { "plant_id": "elephant-garlic", "note": "Alliums can stunt tomato growth when planted too close" }
+  ],
+  "succession_plantable": false,
+  "tended_by": "claude",
+  "pnw_notes": "Czech heirloom bred for cool, short-season climates — one of the most reliable heirlooms for PNW summers. Small to medium red fruits with excellent flavor. Indeterminate: will keep growing and fruiting until frost, needs sturdy cage or stake. Start indoors in late February for maximum season length. Consistent watering critical — irregular moisture causes blossom end rot and cracking.",
+  "planting_windows": [
+    {
+      "activity": "start_indoors",
+      "month_start": 2,
+      "month_end": 3,
+      "notes": "Start 6–8 weeks before last frost; use greenhouse to harden off before transplanting"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 5,
+      "month_end": 5,
+      "notes": "After last frost (May 1–15 for Portland); soil should be consistently warm"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Harvest when fully colored and slightly soft to the touch; continue until first frost"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "elephant-garlic",
+  "name": "Elephant Garlic",
+  "scientific_name": "Allium ampeloprasum",
+  "type": "vegetable",
+  "lifecycle": "biennial",
+  "days_to_maturity": [240, 270],
+  "spacing_in": 8,
+  "height_in": 36,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Deters aphids and cabbage pests that affect brassicas" },
+    { "plant_id": "borage", "note": "Mutual pest deterrence; borage attracts predatory insects" }
+  ],
+  "antagonists": [
+    { "plant_id": "peas", "note": "Alliums inhibit the growth of legumes — keep separated" }
+  ],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Plant cloves in October–November for harvest the following July — this is a 9-month commitment per bed. Milder flavor than true garlic, closer to leek. Cut scapes in June to redirect energy to the bulb (scapes are edible and delicious). Cure harvested bulbs in a dry, ventilated space for 2–4 weeks.",
+  "planting_windows": [
+    {
+      "activity": "plant",
+      "month_start": 10,
+      "month_end": 11,
+      "notes": "Plant individual cloves pointed-end up, 2–3 inches deep"
+    },
+    {
+      "activity": "harvest_scapes",
+      "month_start": 6,
+      "month_end": 6,
+      "notes": "Cut curling scapes before they straighten; eat or use in cooking"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 7,
+      "month_end": 7,
+      "notes": "Harvest when lower half of leaves have browned; cure before storing"
+    }
+  ]
+}

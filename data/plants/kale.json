@@ -1,0 +1,50 @@
+{
+  "id": "kale",
+  "name": "Kale",
+  "scientific_name": "Brassica oleracea var. sabellica",
+  "type": "vegetable",
+  "lifecycle": "biennial",
+  "days_to_maturity": [55, 65],
+  "spacing_in": 18,
+  "height_in": 24,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds", "greenhouse"],
+  "companions": [
+    { "plant_id": "borage", "note": "Repels cabbage worms and aphids, attracts pollinators" },
+    { "plant_id": "elephant-garlic", "note": "Deters aphids and other soft-bodied pests" }
+  ],
+  "antagonists": [
+    { "plant_id": "tomato-stupice", "note": "Both are heavy feeders; compete for nutrients and may inhibit each other's growth" }
+  ],
+  "succession_plantable": true,
+  "succession_interval_days": 21,
+  "tended_by": null,
+  "pnw_notes": "One of the best year-round crops for zone 8b. Flavor improves significantly after frost — sweeter and more complex. Can overwinter in the ground with no protection. Cut outer leaves for continuous production rather than harvesting the whole plant.",
+  "planting_windows": [
+    {
+      "activity": "start_indoors",
+      "month_start": 1,
+      "month_end": 2,
+      "notes": "Start 6-8 weeks before last frost for spring transplants"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 3,
+      "month_end": 4,
+      "notes": "Spring crop; sow when soil can be worked"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 7,
+      "month_end": 8,
+      "notes": "Sow for fall and winter harvest; most rewarding planting window in PNW"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 3,
+      "notes": "Harvest outer leaves continuously; plant persists through Portland winters"
+    }
+  ]
+}

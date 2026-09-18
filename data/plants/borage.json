@@ -1,0 +1,36 @@
+{
+  "id": "borage",
+  "name": "Borage",
+  "scientific_name": "Borago officinalis",
+  "type": "herb",
+  "lifecycle": "annual",
+  "days_to_maturity": [50, 60],
+  "spacing_in": 15,
+  "height_in": 24,
+  "light": "full_sun",
+  "water": "low_medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "tomato-stupice", "note": "Repels tomato hornworm; strong pollinator attractor improves fruit set" },
+    { "plant_id": "kale", "note": "Repels cabbage worms; predatory insects attracted to borage flowers patrol nearby brassicas" },
+    { "plant_id": "elephant-garlic", "note": "Complementary pest deterrence; borage fills the pollinator role garlic lacks" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": "claude",
+  "pnw_notes": "Star-shaped blue flowers are edible — mild cucumber flavor, good in salads or frozen in ice cubes. Self-seeds so prolifically it effectively persists year to year: thin seedlings rather than replanting. Drought tolerant once established. Relatively short-lived as an individual plant but the colony self-sustains. Bees in particular are strongly attracted to the flowers.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 4,
+      "month_end": 5,
+      "notes": "Direct sow after last frost; dislikes transplanting"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 6,
+      "month_end": 9,
+      "notes": "Pick flowers continuously to extend bloom period; harvest in the morning"
+    }
+  ]
+}
