@@ -1,0 +1,45 @@
+{
+  "id": "green-onion",
+  "name": "Green Onion",
+  "scientific_name": "Allium fistulosum",
+  "type": "vegetable",
+  "lifecycle": "perennial",
+  "days_to_maturity": [60, 80],
+  "spacing_in": 2,
+  "height_in": 18,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Deters aphids and other soft-bodied pests from brassicas" },
+    { "plant_id": "collard-greens", "note": "Same pest deterrence as with other brassicas" },
+    { "plant_id": "spinach", "note": "Good bed companions with similar spacing needs" }
+  ],
+  "antagonists": [
+    { "plant_id": "peas", "note": "Alliums inhibit legume growth — keep separated" }
+  ],
+  "succession_plantable": true,
+  "succession_interval_days": 21,
+  "tended_by": null,
+  "pnw_notes": "Bunching onions (Allium fistulosum) are perennial and never form a true bulb — harvest the whole plant or cut the tops and let it regrow. Extremely cold hardy; will overwinter in zone 8b without protection. Plant in fall for spring harvest, or plant in spring for summer. Dense plantings work well — thin and eat the thinnings.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 9,
+      "month_end": 10,
+      "notes": "Fall sow for overwintering; harvest in spring"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring sow for summer harvest"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 4,
+      "month_end": 6,
+      "notes": "Pull whole plants or cut tops 2 in above soil; regrows 2–3 times"
+    }
+  ]
+}

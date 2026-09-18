@@ -1,0 +1,36 @@
+{
+  "id": "spinach",
+  "name": "Spinach",
+  "scientific_name": "Spinacia oleracea",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [40, 50],
+  "spacing_in": 6,
+  "height_in": 8,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds", "greenhouse"],
+  "companions": [
+    { "plant_id": "strawberry", "note": "Spinach suppresses weeds around strawberry crowns; both like cool, moist conditions" },
+    { "plant_id": "elephant-garlic", "note": "Alliums deter common spinach pests" }
+  ],
+  "antagonists": [],
+  "succession_plantable": true,
+  "succession_interval_days": 14,
+  "tended_by": null,
+  "pnw_notes": "Fall is the ideal spinach season in Portland — cool temps prevent bolting that makes summer spinach bitter. Direct sow August through October. Plants can overwinter with row cover and harvest slowly through winter. Savoy (crinkled) types are slightly more cold-hardy than smooth-leafed.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Sow every two weeks for continuous harvest; thin to 6 in"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 3,
+      "notes": "Harvest outer leaves continuously; inner crown regrows through winter"
+    }
+  ]
+}

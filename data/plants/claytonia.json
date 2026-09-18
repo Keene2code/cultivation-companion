@@ -1,0 +1,33 @@
+{
+  "id": "claytonia",
+  "name": "Claytonia",
+  "scientific_name": "Claytonia perfoliata",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [40, 50],
+  "spacing_in": 4,
+  "height_in": 6,
+  "light": "partial_shade",
+  "water": "low_medium",
+  "suitable_zones": ["front_beds", "shade_garden"],
+  "companions": [],
+  "antagonists": [],
+  "succession_plantable": true,
+  "succession_interval_days": 21,
+  "tended_by": null,
+  "pnw_notes": "Also called miner's lettuce. Native to the Pacific Northwest — this is a plant that evolved in this specific climate. Mild, succulent leaves with a distinctive round disc around the stem. Self-seeds aggressively once established; you may never need to plant it again. Tolerates shade, which makes it useful under taller plants. Edible from leaf to stem. Historically eaten by Indigenous peoples and by California gold miners (hence the name) as a vitamin C source.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 9,
+      "month_end": 11,
+      "notes": "Sow thickly; thins itself through competition. Will also self-sow from any plants allowed to go to seed."
+    },
+    {
+      "activity": "harvest",
+      "month_start": 11,
+      "month_end": 4,
+      "notes": "Harvest continuously through winter and early spring; bolts and disappears when temperatures rise"
+    }
+  ]
+}

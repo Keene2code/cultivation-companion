@@ -1,0 +1,35 @@
+{
+  "id": "tatsoi",
+  "name": "Tatsoi",
+  "scientific_name": "Brassica rapa subsp. narinosa",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [45, 50],
+  "spacing_in": 12,
+  "height_in": 6,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds", "greenhouse"],
+  "companions": [
+    { "plant_id": "borage", "note": "Borage deters cabbage worms; good companion for all brassica greens" }
+  ],
+  "antagonists": [],
+  "succession_plantable": true,
+  "succession_interval_days": 21,
+  "tended_by": null,
+  "pnw_notes": "Forms a flat, symmetrical rosette of glossy dark green spoon-shaped leaves — one of the more visually striking greens in a fall bed. Extremely cold hardy; flavor sweetens after frost. Can handle temperatures down to the mid-20s °F. Harvest individual outer leaves or the whole rosette.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Sow direct or transplant; give room for the rosette to spread flat"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 2,
+      "notes": "Harvest outer leaves to keep rosette producing; flavor best after first frost"
+    }
+  ]
+}

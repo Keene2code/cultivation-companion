@@ -1,0 +1,38 @@
+{
+  "id": "carrot",
+  "name": "Carrot",
+  "scientific_name": "Daucus carota subsp. sativus",
+  "type": "vegetable",
+  "lifecycle": "biennial",
+  "days_to_maturity": [70, 80],
+  "spacing_in": 3,
+  "height_in": 12,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "borage", "note": "Borage attracts predatory insects that control carrot fly" },
+    { "plant_id": "tomato-stupice", "note": "Tomatoes repel carrot fly; carrots may loosen soil around tomato roots" }
+  ],
+  "antagonists": [
+    { "plant_id": "elephant-garlic", "note": "Alliums can stunt carrot growth when planted in close proximity" }
+  ],
+  "succession_plantable": true,
+  "succession_interval_days": 21,
+  "tended_by": null,
+  "pnw_notes": "Carrots left in the ground through Portland winters sweeten as starches convert to sugar in the cold — this is one of the best uses of a fall bed. Sow in late summer (July–August) for fall harvest, or leave summer-sown carrots in the ground and harvest through winter as needed. Needs deep, loose, rock-free soil — raised beds are ideal. Thin ruthlessly to 3 in or roots fork.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 7,
+      "month_end": 8,
+      "notes": "Sow for fall/winter harvest; keep soil consistently moist until germination (10–21 days)"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 2,
+      "notes": "Harvest as needed through winter; sweetness peaks after sustained cold. Mulch tops to protect from hard freezes."
+    }
+  ]
+}

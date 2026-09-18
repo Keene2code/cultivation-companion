@@ -1,0 +1,41 @@
+{
+  "id": "collard-greens",
+  "name": "Collard Greens",
+  "scientific_name": "Brassica oleracea var. viridis",
+  "type": "vegetable",
+  "lifecycle": "biennial",
+  "days_to_maturity": [75, 85],
+  "spacing_in": 18,
+  "height_in": 36,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "borage", "note": "Borage repels cabbage worms that heavily target collards" },
+    { "plant_id": "elephant-garlic", "note": "Alliums deter aphids, a common collard pest" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "The most cold-hardy of the common brassica greens — even hardier than kale in sustained freezes. Flavor sweetens dramatically after frost. Large, substantial leaves good for cooking or wrapping. Long season plant; start in summer for fall/winter harvest. Needs more vertical space than kale — consider bed position carefully.",
+  "planting_windows": [
+    {
+      "activity": "start_indoors",
+      "month_start": 6,
+      "month_end": 7,
+      "notes": "Start 4–6 weeks before outdoor transplant date"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 7,
+      "month_end": 8,
+      "notes": "Transplant while still warm enough to establish before fall"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 3,
+      "notes": "Harvest lower leaves; plant continues producing from the top through winter"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "cilantro",
+  "name": "Cilantro",
+  "scientific_name": "Coriandrum sativum",
+  "type": "herb",
+  "lifecycle": "annual",
+  "days_to_maturity": [45, 60],
+  "spacing_in": 6,
+  "height_in": 18,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds", "greenhouse"],
+  "companions": [
+    { "plant_id": "spinach", "note": "Both prefer cool conditions; cilantro flowers attract predatory wasps that help spinach" },
+    { "plant_id": "kale", "note": "Cilantro flowers attract beneficial insects that predate cabbage worms" }
+  ],
+  "antagonists": [],
+  "succession_plantable": true,
+  "succession_interval_days": 14,
+  "tended_by": null,
+  "pnw_notes": "Cilantro's biggest enemy is heat, which causes it to bolt immediately to seed. Fall in Portland is its ideal season — cool temps keep plants in the leafy stage much longer. Direct sow now through October. The seeds (coriander) are also edible and useful. Let some plants bolt for seed harvest and for the beneficial insects the flowers attract.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Sow thickly every two weeks for continuous harvest; dislikes transplanting"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 9,
+      "month_end": 12,
+      "notes": "Harvest regularly to delay bolting; once flower stalks appear, harvest seed heads as coriander"
+    }
+  ]
+}
