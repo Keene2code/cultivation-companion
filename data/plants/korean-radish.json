@@ -1,0 +1,52 @@
+{
+  "id": "korean-radish",
+  "name": "Korean Radish",
+  "scientific_name": "Raphanus sativus var. longipinnatus",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [50, 60],
+  "spacing_in": 6,
+  "height_in": 12,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Daikon-type radishes repel flea beetles that attack brassicas" },
+    { "plant_id": "spinach", "note": "Compatible fall timing; spinach fills gaps between radish plants" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Korean Bora King is a purple-skinned daikon-type radish with crisp white flesh — a staple of Korean cooking and kimchi. Much larger and slower than salad radishes; needs loose, deep soil to form properly. Fall is the prime window in the PNW. Store roots in a cool place after harvest; keeps for weeks.",
+  "frost_hardiness": {
+    "rating": "root_protected",
+    "min_temp_f": null,
+    "notes": "Large root is insulated through a Portland winter. Tops die back in hard freeze; harvest the root anytime until ground freezes."
+  },
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 3,
+      "month_end": 4,
+      "notes": "Spring window; harvest before summer heat"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 8,
+      "month_end": 9,
+      "notes": "Primary fall window — 50–60 days before first frost; deep, loose soil essential"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 5,
+      "month_end": 6,
+      "notes": "Spring harvest; pull before ground heats up"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 11,
+      "notes": "Fall harvest; roots store well in a cool place for weeks"
+    }
+  ]
+}

@@ -18,6 +18,11 @@
   "succession_plantable": false,
   "tended_by": null,
   "pnw_notes": "The most cold-hardy of the common brassica greens — even hardier than kale in sustained freezes. Flavor sweetens dramatically after frost. Large, substantial leaves good for cooking or wrapping. Long season plant; start in summer for fall/winter harvest. Needs more vertical space than kale — consider bed position carefully.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 12,
+    "notes": "The most cold-hardy common brassica — even hardier than kale. Flavor peaks after sustained frost."
+  },
   "planting_windows": [
     {
       "activity": "start_indoors",

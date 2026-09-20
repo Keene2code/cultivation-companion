@@ -17,6 +17,11 @@
   "antagonists": [
     { "plant_id": "elephant-garlic", "note": "Alliums can stunt carrot growth when planted in close proximity" }
   ],
+  "frost_hardiness": {
+    "rating": "root_protected",
+    "min_temp_f": null,
+    "notes": "Root is insulated in soil and sweetens dramatically as the season cools. Harvest anytime until the ground freezes solid."
+  },
   "succession_plantable": true,
   "succession_interval_days": 21,
   "tended_by": null,

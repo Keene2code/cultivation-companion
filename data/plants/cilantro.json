@@ -15,6 +15,11 @@
     { "plant_id": "kale", "note": "Cilantro flowers attract beneficial insects that predate cabbage worms" }
   ],
   "antagonists": [],
+  "frost_hardiness": {
+    "rating": "semi_hardy",
+    "min_temp_f": 28,
+    "notes": "Survives light frost; hard freeze kills it. Row cover extends the fall harvest into December."
+  },
   "succession_plantable": true,
   "succession_interval_days": 14,
   "tended_by": null,

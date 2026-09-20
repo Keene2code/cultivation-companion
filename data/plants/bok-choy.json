@@ -1,0 +1,58 @@
+{
+  "id": "bok-choy",
+  "name": "Bok Choy",
+  "scientific_name": "Brassica rapa subsp. chinensis",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [45, 60],
+  "spacing_in": 6,
+  "height_in": 14,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Compatible brassica bed; similar pest and water needs" },
+    { "plant_id": "radish", "note": "Radishes repel flea beetles that attack brassicas; harvest radishes as bok choy fills in" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "One of the most productive fall brassicas in the PNW. Extremely frost-hardy — can handle temperatures into the mid-20s. Harvest whole heads at the base or take outer leaves continuously. Baby bok choy can be spaced closer at 4 in. Excellent stir-fry green; also great raw in salads when young.",
+  "frost_hardiness": {
+    "rating": "semi_hardy",
+    "min_temp_f": 24,
+    "notes": "More frost-hardy than most brassicas. Row cover below 25°F. A light frost sweetens the flavor."
+  },
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 3,
+      "month_end": 4,
+      "notes": "Spring sowing; harvest before summer heat causes bolting"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 8,
+      "month_end": 9,
+      "notes": "Fall window — best flavor; very frost-hardy"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 9,
+      "notes": "Transplant starts for fall; spacing 6 in for standard, 4 in for baby"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 4,
+      "month_end": 6,
+      "notes": "Spring harvest; cut at base or harvest outer leaves"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 12,
+      "notes": "Fall harvest; flavor sweetens with frost"
+    }
+  ]
+}

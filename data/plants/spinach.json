@@ -19,6 +19,11 @@
   "succession_interval_days": 14,
   "tended_by": null,
   "pnw_notes": "Fall is the ideal spinach season in Portland — cool temps prevent bolting that makes summer spinach bitter. Direct sow August through October. Plants can overwinter with row cover and harvest slowly through winter. Savoy (crinkled) types are slightly more cold-hardy than smooth-leafed.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 20,
+    "notes": "Sweetens with cold. May go semi-dormant in deep freezes then resume; no protection needed."
+  },
   "planting_windows": [
     {
       "activity": "direct_sow",

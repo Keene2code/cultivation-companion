@@ -1,0 +1,46 @@
+{
+  "id": "napa-cabbage",
+  "name": "Napa Cabbage",
+  "scientific_name": "Brassica rapa subsp. pekinensis",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [50, 70],
+  "spacing_in": 12,
+  "height_in": 16,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Compatible brassica bed; share crop rotation timing" },
+    { "plant_id": "green-onion", "note": "Green onion deters soft-bodied pests from cabbage" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Mini varieties like Mini Napa #2 are perfect for small raised beds — full heads at half the footprint. Bolts readily in heat; fall is prime time. Extremely frost-tolerant — can hold in the ground well into December. Rich in vitamins, wonderful fresh or fermented as kimchi.",
+  "frost_hardiness": {
+    "rating": "semi_hardy",
+    "min_temp_f": 26,
+    "notes": "Handles light frost; hard freeze damages outer wrapper leaves. Row cover below 28°F. Harvest before a sustained hard freeze."
+  },
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 7,
+      "month_end": 8,
+      "notes": "Sow 70–80 days before expected first frost for fall harvest"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 9,
+      "notes": "Transplant starts for more reliable fall timing"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 10,
+      "month_end": 12,
+      "notes": "Harvest when heads feel firm; can hold in ground past first frosts"
+    }
+  ]
+}

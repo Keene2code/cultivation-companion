@@ -15,6 +15,11 @@
     { "plant_id": "borage", "note": "Both attract beneficial insects; good herb bed companions" }
   ],
   "antagonists": [],
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 20,
+    "notes": "Biennial that overwinters reliably in zone 8b. Slows in deep winter but survives and continues producing."
+  },
   "succession_plantable": false,
   "tended_by": null,
   "pnw_notes": "Biennial — first year it produces leaves, second year it flowers and sets seed before dying. In zone 8b it overwinters reliably and produces heavily in its first spring. Germination is notoriously slow (3–6 weeks); soaking seeds overnight speeds this up. Flat-leaf (Italian) parsley has better flavor than curly; curly is more cold-hardy. Both work here.",

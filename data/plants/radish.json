@@ -1,0 +1,53 @@
+{
+  "id": "radish",
+  "name": "Radish",
+  "scientific_name": "Raphanus sativus",
+  "type": "vegetable",
+  "lifecycle": "annual",
+  "days_to_maturity": [22, 30],
+  "spacing_in": 3,
+  "height_in": 8,
+  "light": "full_sun",
+  "water": "medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "spinach", "note": "Compatible spacing and timing; radishes break soil surface, spinach fills in beneath" },
+    { "plant_id": "kale", "note": "Radishes repel flea beetles that target brassicas; harvest before kale needs the space" }
+  ],
+  "antagonists": [],
+  "succession_plantable": true,
+  "succession_interval_days": 14,
+  "tended_by": null,
+  "pnw_notes": "One of the fastest crops in the garden — ready in 3–4 weeks. Best in cool weather; heat makes them pithy and bolt quickly. Classic trick: sow radishes to mark rows of slow-germinating crops like carrots, then harvest as the slower crop fills in. Succession sow every 2 weeks from March through May and again August through October for continuous harvest.",
+  "frost_hardiness": {
+    "rating": "root_protected",
+    "min_temp_f": null,
+    "notes": "Root is protected in soil. Tops may die back in a hard freeze — just pull the root. Harvest before ground freezes solid."
+  },
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Sow thickly, thin to 3 in; harvest before heat arrives"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall window — cool temps produce best flavor and texture"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 4,
+      "month_end": 6,
+      "notes": "Spring harvest; pull before they crack or go pithy in summer heat"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 9,
+      "month_end": 11,
+      "notes": "Fall harvest; flavor peaks with cool nights"
+    }
+  ]
+}

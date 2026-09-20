@@ -1,0 +1,35 @@
+{
+  "id": "dill",
+  "name": "Dill",
+  "scientific_name": "Anethum graveolens",
+  "type": "herb",
+  "lifecycle": "annual",
+  "days_to_maturity": [40, 60],
+  "spacing_in": 12,
+  "height_in": 36,
+  "light": "full_sun",
+  "water": "low_medium",
+  "suitable_zones": ["front_beds", "pollinator_garden"],
+  "companions": [
+    { "plant_id": "borage", "note": "Both attract beneficial insects; dill draws swallowtail larvae and parasitic wasps" }
+  ],
+  "antagonists": [],
+  "succession_plantable": true,
+  "succession_interval_days": 21,
+  "tended_by": null,
+  "pnw_notes": "Direct sow every 2–3 weeks from April through July for continuous harvest. Self-seeds aggressively — let a few plants go to seed and you may never need to replant. Umbel flowers attract swallowtail larvae and beneficial wasps.",
+  "planting_windows": [
+    {
+      "activity": "direct_sow",
+      "month_start": 4,
+      "month_end": 7,
+      "notes": "Succession sow every 2–3 weeks; dislikes transplanting"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 6,
+      "month_end": 9,
+      "notes": "Harvest fronds before flowering for best flavor; collect seed heads when tan and dry"
+    }
+  ]
+}

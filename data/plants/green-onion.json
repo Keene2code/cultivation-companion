@@ -15,6 +15,11 @@
     { "plant_id": "collard-greens", "note": "Same pest deterrence as with other brassicas" },
     { "plant_id": "spinach", "note": "Good bed companions with similar spacing needs" }
   ],
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 15,
+    "notes": "Overwinters without protection. May die back to soil level then regrow in spring."
+  },
   "antagonists": [
     { "plant_id": "peas", "note": "Alliums inhibit legume growth — keep separated" }
   ],

@@ -1,0 +1,40 @@
+{
+  "id": "lavender",
+  "name": "Lavender",
+  "scientific_name": "Lavandula sp.",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": null,
+  "spacing_in": 24,
+  "height_in": 24,
+  "light": "full_sun",
+  "water": "low",
+  "suitable_zones": ["front_beds", "pollinator_garden"],
+  "companions": [
+    { "plant_id": "borage", "note": "Both are strong pollinator attractors; planting together creates a vibrant insect habitat patch" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Thrives in PNW dry summers but needs excellent drainage to survive wet winters — a raised bed or south-facing slope is ideal. Prune by one third after bloom; never cut into old wood. Visit a specialty nursery in bloom season (June–July) to choose by scent.",
+  "planting_windows": [
+    {
+      "activity": "plant",
+      "month_start": 9,
+      "month_end": 10,
+      "notes": "Fall planting preferred — roots establish before winter"
+    },
+    {
+      "activity": "plant",
+      "month_start": 3,
+      "month_end": 4,
+      "notes": "Spring planting also works; water until established"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 6,
+      "month_end": 8,
+      "notes": "Cut stems when about half the flowers have opened; hang to dry"
+    }
+  ]
+}

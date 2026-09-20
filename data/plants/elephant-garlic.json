@@ -17,6 +17,11 @@
   "antagonists": [
     { "plant_id": "peas", "note": "Alliums inhibit the growth of legumes — keep separated" }
   ],
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 10,
+    "notes": "Planted in fall to overwinter. Tops may die back in hard freezes and regrow in spring."
+  },
   "succession_plantable": false,
   "tended_by": null,
   "pnw_notes": "Plant cloves in October–November for harvest the following July — this is a 9-month commitment per bed. Milder flavor than true garlic, closer to leek. Cut scapes in June to redirect energy to the bulb (scapes are edible and delicious). Cure harvested bulbs in a dry, ventilated space for 2–4 weeks.",

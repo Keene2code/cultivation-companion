@@ -1,0 +1,38 @@
+{
+  "id": "milkweed",
+  "name": "Showy Milkweed",
+  "scientific_name": "Asclepias speciosa",
+  "type": "native_perennial",
+  "lifecycle": "perennial",
+  "days_to_maturity": null,
+  "spacing_in": 24,
+  "height_in": 48,
+  "light": "full_sun",
+  "water": "low",
+  "suitable_zones": ["pollinator_garden"],
+  "companions": [],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": "claude",
+  "pnw_notes": "PNW-native milkweed, essential habitat for monarch butterflies. Spreads by rhizome — give it its own patch. Goes fully dormant in winter and emerges late in spring. IMPORTANT: toxic to Jazzy and cats; plant only where pets cannot access. Pink globe flowers July–August.",
+  "planting_windows": [
+    {
+      "activity": "plant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Transplant potted starts after last frost; cold stratify seed 30 days before sowing"
+    },
+    {
+      "activity": "plant",
+      "month_start": 9,
+      "month_end": 10,
+      "notes": "Fall planting mimics natural seed dispersal; good establishment"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 7,
+      "month_end": 8,
+      "notes": "Flowers July–August; collect mature seed pods in fall before they split open"
+    }
+  ]
+}

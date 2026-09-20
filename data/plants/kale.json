@@ -21,6 +21,11 @@
   "succession_interval_days": 21,
   "tended_by": null,
   "pnw_notes": "One of the best year-round crops for zone 8b. Flavor improves significantly after frost — sweeter and more complex. Can overwinter in the ground with no protection. Cut outer leaves for continuous production rather than harvesting the whole plant.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 15,
+    "notes": "Flavor improves after frost — starches convert to sugar. No protection needed through a Portland winter."
+  },
   "planting_windows": [
     {
       "activity": "start_indoors",
