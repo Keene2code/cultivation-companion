@@ -1,0 +1,47 @@
+{
+  "id": "rosemary",
+  "name": "Rosemary",
+  "scientific_name": "Salvia rosmarinus 'Blue Lagoon'",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": [90, 120],
+  "spacing_in": 24,
+  "height_in": 12,
+  "light": "full_sun",
+  "water": "low",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Rosemary repels cabbage moth; good brassica companion" },
+    { "plant_id": "carrot", "note": "Rosemary scent confuses carrot fly; classic companion planting pair" },
+    { "plant_id": "sage", "note": "Compatible drought-tolerant companions; similar sun and drainage needs" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Blue Lagoon is a trailing/prostrate rosemary — spreads along the ground rather than growing upright, beautiful at bed edges or cascading over a border. Evergreen in zone 8b under most winters; if temps drop below 15°F, drape with fleece overnight. Very drought tolerant once established. Flavor is most intense on woody stems. Harvest by snipping stem tips — never strip a whole branch bare.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 15,
+    "notes": "Evergreen and hardy through typical Portland winters. May suffer dieback in hard freezes below 15°F — protect with fleece. Trim damaged tips in spring and the plant recovers quickly."
+  },
+  "planting_windows": [
+    {
+      "activity": "transplant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring transplant preferred for best establishment"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall transplant viable; roots establish well before first frost"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 1,
+      "month_end": 12,
+      "notes": "Year-round harvest; harvest lightly first year while establishing"
+    }
+  ]
+}

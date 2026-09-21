@@ -1,0 +1,49 @@
+{
+  "id": "garlic-chives",
+  "name": "Garlic Chives",
+  "scientific_name": "Allium tuberosum",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": [60, 90],
+  "spacing_in": 10,
+  "height_in": 18,
+  "light": "full_sun",
+  "water": "low_medium",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Deters aphids and soft-bodied pests from brassicas" },
+    { "plant_id": "bok-choy", "note": "Same pest deterrence; compatible fall timing" },
+    { "plant_id": "napa-cabbage", "note": "Garlic chives repel aphids that target brassicas" },
+    { "plant_id": "carrot", "note": "Allium scent confuses carrot fly" },
+    { "plant_id": "radish", "note": "Compatible timing and spacing; both benefit from allium pest deterrence" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Flat, solid leaves with mild garlic flavor — classic in Korean and Chinese cooking. White flowers in late summer are edible and beautiful for pollinators. Spreads readily by self-seeding; deadhead flowers to keep contained. Divide clumps every 2–3 years. NOT safe for Jazzy or cats — allium family.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 10,
+    "notes": "Perennial — goes fully dormant in winter and returns reliably in spring without any intervention."
+  },
+  "planting_windows": [
+    {
+      "activity": "transplant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring transplant; establish before summer"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall transplant — roots establish well in cool soil; harvest begins next spring"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 4,
+      "month_end": 10,
+      "notes": "Snip leaves 2 in above soil; harvest white flowers in August before they fade"
+    }
+  ]
+}

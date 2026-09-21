@@ -1,0 +1,53 @@
+{
+  "id": "catnip",
+  "name": "Catnip",
+  "scientific_name": "Nepeta cataria",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": [60, 75],
+  "spacing_in": 18,
+  "height_in": 36,
+  "light": "full_sun",
+  "water": "low_medium",
+  "suitable_zones": ["front_beds", "pollinator_garden"],
+  "companions": [
+    { "plant_id": "kale", "note": "Catnip repels flea beetles and aphids — a great brassica protector" },
+    { "plant_id": "bok-choy", "note": "Same flea beetle deterrence as with kale" },
+    { "plant_id": "tomato-stupice", "note": "Catnip repels aphids and spider mites; both are heavy feeders that benefit from pest reduction" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Perennial that dies back to roots in winter and returns vigorously each spring — sometimes too vigorously. Deadhead after flowering to prevent aggressive self-seeding. Lavender-white flower spikes are excellent for bees and butterflies. Jazzy will be very interested in this plant while young — consider a small cage or wire cloche while it establishes, as repeated rolling can damage new growth. Safe for cats.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": -20,
+    "notes": "Dies back to the ground in winter and regrows reliably from the roots each spring. No protection needed."
+  },
+  "planting_windows": [
+    {
+      "activity": "transplant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring transplant; establish before summer"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall transplant viable — roots establish in cool soil; protect young plant from cats while establishing"
+    },
+    {
+      "activity": "direct_sow",
+      "month_start": 4,
+      "month_end": 5,
+      "notes": "Direct sow in spring; slow from seed but vigorous once established"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 6,
+      "month_end": 9,
+      "notes": "Harvest leaves and flowering tips; potency is highest just before peak bloom"
+    }
+  ]
+}

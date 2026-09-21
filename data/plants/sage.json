@@ -1,0 +1,48 @@
+{
+  "id": "sage",
+  "name": "Purple Sage",
+  "scientific_name": "Salvia officinalis 'Purpurascens'",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": [75, 90],
+  "spacing_in": 18,
+  "height_in": 24,
+  "light": "full_sun",
+  "water": "low",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Sage repels cabbage moth and imported cabbageworm" },
+    { "plant_id": "collard-greens", "note": "Same cabbage pest deterrence as with kale" },
+    { "plant_id": "carrot", "note": "Sage confuses carrot fly with its strong scent" },
+    { "plant_id": "rosemary", "note": "Compatible drought-tolerant companions with similar sun and drainage needs" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "Purple-leafed culinary sage — same strong flavor as common sage, more ornamental. Semi-evergreen in zone 8b; foliage may bronze in cold but rarely dies back entirely. Harvest sparingly the first year while it establishes; becomes prolific by year two. Blue-purple flowers in early summer are excellent for bees and hummingbirds. Prune lightly after bloom; never cut into old wood.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 10,
+    "notes": "Semi-evergreen in zone 8b — leaves may bronze or partially die back in hard freezes but the plant survives and regrows. No intervention needed."
+  },
+  "planting_windows": [
+    {
+      "activity": "transplant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring transplant preferred; establish before summer"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall transplant viable — harvest lightly until established next spring"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 1,
+      "month_end": 12,
+      "notes": "Year-round harvest; peak flavor spring and fall; harvest sparingly first year"
+    }
+  ]
+}

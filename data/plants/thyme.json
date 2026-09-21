@@ -1,0 +1,48 @@
+{
+  "id": "thyme",
+  "name": "English Thyme",
+  "scientific_name": "Thymus vulgaris",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": [75, 90],
+  "spacing_in": 12,
+  "height_in": 12,
+  "light": "full_sun",
+  "water": "low",
+  "suitable_zones": ["front_beds"],
+  "companions": [
+    { "plant_id": "kale", "note": "Thyme repels cabbage worms and whiteflies; excellent brassica companion" },
+    { "plant_id": "bok-choy", "note": "Same cabbage pest deterrence as with kale" },
+    { "plant_id": "tomato-stupice", "note": "Thyme repels aphids and hornworms; both thrive in full sun" },
+    { "plant_id": "borage", "note": "Both attract beneficial insects; good pollinator corridor together" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "One of the most reliably perennial herbs in zone 8b — stays evergreen through Portland winters. Harvest sprigs year-round; flavor peaks just before flowering in late spring. Needs excellent drainage; raised beds are ideal. Trim back by one third after bloom to keep bushy. Great with roasted root vegetables and brassicas.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 0,
+    "notes": "Evergreen in zone 8b — keeps harvestable leaves all winter. Woodier stems protect the crown through freezes."
+  },
+  "planting_windows": [
+    {
+      "activity": "transplant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring transplant; establish before summer heat"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall transplant works well — roots establish in cool soil; harvest lightly until spring"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 1,
+      "month_end": 12,
+      "notes": "Year-round harvest; peak flavor May–September just before and during bloom"
+    }
+  ]
+}
