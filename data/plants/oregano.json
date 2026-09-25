@@ -1,0 +1,47 @@
+{
+  "id": "oregano",
+  "name": "Oregano",
+  "scientific_name": "Origanum vulgare",
+  "type": "herb",
+  "lifecycle": "perennial",
+  "days_to_maturity": [80, 90],
+  "spacing_in": 12,
+  "height_in": 18,
+  "light": "full_sun",
+  "water": "low",
+  "suitable_zones": ["herb_bed"],
+  "companions": [
+    { "plant_id": "tomato-stupice", "note": "Classic companion — oregano repels aphids and spider mites; both thrive in full sun" },
+    { "plant_id": "kale", "note": "Oregano deters cabbage moths; aromatic herbs generally benefit brassicas" },
+    { "plant_id": "borage", "note": "Both attract pollinators; create a strong beneficial insect habitat together" }
+  ],
+  "antagonists": [],
+  "succession_plantable": false,
+  "tended_by": null,
+  "pnw_notes": "One of the most drought-tolerant herbs in the garden — thrives in PNW dry summers. Flavor is most intense just before flowering in midsummer; cut back by half after first flowering to encourage a second flush. Semi-evergreen in zone 8b; may die back to the crown in a hard freeze but returns vigorously in spring. Greek and Italian varieties have stronger flavor than common oregano.",
+  "frost_hardiness": {
+    "rating": "very_hardy",
+    "min_temp_f": 0,
+    "notes": "Reliably perennial in zone 8b. May die back to the crown in a hard freeze but returns vigorously in spring."
+  },
+  "planting_windows": [
+    {
+      "activity": "transplant",
+      "month_start": 3,
+      "month_end": 5,
+      "notes": "Spring transplant preferred; establish before summer drought sets in"
+    },
+    {
+      "activity": "transplant",
+      "month_start": 8,
+      "month_end": 10,
+      "notes": "Fall planting works well in zone 8b — roots establish in cool, moist soil"
+    },
+    {
+      "activity": "harvest",
+      "month_start": 4,
+      "month_end": 10,
+      "notes": "Peak flavor June–August just before and during bloom; dry easily for winter use"
+    }
+  ]
+}

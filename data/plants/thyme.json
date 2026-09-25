@@ -1,7 +1,7 @@
 {
   "id": "thyme",
-  "name": "English Thyme",
-  "scientific_name": "Thymus vulgaris",
+  "name": "Thyme",
+  "scientific_name": "Thymus sp.",
   "type": "herb",
   "lifecycle": "perennial",
   "days_to_maturity": [75, 90],
@@ -19,7 +19,7 @@
   "antagonists": [],
   "succession_plantable": false,
   "tended_by": null,
-  "pnw_notes": "One of the most reliably perennial herbs in zone 8b — stays evergreen through Portland winters. Harvest sprigs year-round; flavor peaks just before flowering in late spring. Needs excellent drainage; raised beds are ideal. Trim back by one third after bloom to keep bushy. Great with roasted root vegetables and brassicas.",
+  "pnw_notes": "One of the most reliably perennial herbs in zone 8b — stays evergreen through Portland winters. Harvest sprigs year-round; flavor peaks just before flowering in late spring. Needs excellent drainage; raised beds are ideal. Trim back by one third after bloom to keep bushy. English thyme (T. vulgaris) has the classic savory flavor; Lemon thyme (T. citriodorus) adds bright citrus notes — both care the same. Great with roasted root vegetables and brassicas.",
   "frost_hardiness": {
     "rating": "very_hardy",
     "min_temp_f": 0,

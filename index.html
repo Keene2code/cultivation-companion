@@ -272,6 +272,15 @@ body {
 .ruler-tick { font-size: 10.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .canvas-note { font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.6; }
 
+/* ── Container strip ─────────────── */
+.container-strip { width: 100%; max-width: 820px; }
+.container-strip-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+.container-strip-row { display: flex; flex-wrap: wrap; gap: 20px; }
+.container-badge { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: opacity 0.1s; }
+.container-badge:hover { opacity: 0.8; }
+.container-dot { width: 54px; height: 54px; border-radius: 50%; border: 2px dashed; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+.container-variety { font-size: 11.5px; color: var(--text-secondary); text-align: center; max-width: 72px; line-height: 1.3; }
+
 .zone-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 200px; color: var(--text-muted); text-align: center; }
 .zone-placeholder .ph-title { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text-secondary); }
 .zone-placeholder .ph-sub { font-size: 13.5px; line-height: 1.6; }
@@ -774,18 +783,31 @@ const PLANTS = [
   { id: 'milkweed',      name: 'Showy Milkweed', sci: 'Asclepias speciosa',                    type: 'Native perennial', seasons: ['summer'],                  zones: ['pollinator_garden'],        tended_by: 'claude', maturity: 'Perennial — blooms year 2–3 from seed', spacing: '24 in', color: '#C86890', abbr: 'Mk', pnw: 'PNW-native milkweed, essential habitat for monarch butterflies. Spreads by rhizome — give it its own patch. Goes fully dormant in winter and emerges late in spring. IMPORTANT: toxic to Jazzy and cats; plant only where pets cannot access. Pink globe flowers July–August.' },
   { id: 'radish',        name: 'Radish',         sci: 'Raphanus sativus',                      type: 'Vegetable', seasons: ['spring','fall'],               zones: ['front_beds'],               tended_by: null,    maturity: '22–30 days',                   spacing: '3 in',  color: '#C83020', abbr: 'Ra', pnw: 'One of the fastest crops in the garden — ready in 3–4 weeks. Best in cool weather; heat makes them pithy and bolt quickly. Classic trick: sow radishes to mark rows of slow-germinating crops like carrots, then harvest as the slower crop fills in. Succession sow every 2 weeks.' },
   { id: 'lettuce',      name: 'Lettuce',        sci: 'Lactuca sativa',                        type: 'Vegetable', seasons: ['spring','fall','winter'],       zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '45–60 days',                   spacing: '8 in',  color: '#70C840', abbr: 'Lt', pnw: 'Cool-season workhorse — one of the most rewarding succession crops in the PNW. Continuity is a butterhead that holds well without bolting. Succession sow every 2–3 weeks from March through May and again August through September for near-continuous harvest. Gets bitter in heat; summer sowing needs shade.' },
-  { id: 'napa-cabbage', name: 'Napa Cabbage',   sci: 'Brassica rapa subsp. pekinensis',       type: 'Vegetable', seasons: ['fall','winter','spring'],       zones: ['front_beds'],               tended_by: null,    maturity: '50–70 days',                   spacing: '12 in', color: '#A0C050', abbr: 'Nc', pnw: 'Mini varieties like Mini Napa #2 are perfect for small raised beds — full heads at half the footprint. Bolts readily in heat; fall is prime time. Extremely frost-tolerant — can hold in the ground well into December. Rich in vitamins, wonderful fresh or fermented as kimchi.' },
+  { id: 'napa-cabbage', name: 'Napa Cabbage',   sci: 'Brassica rapa subsp. pekinensis',       type: 'Vegetable', seasons: ['fall','winter','spring'],       zones: ['front_beds'],               tended_by: null,    maturity: '50–70 days',                   spacing: '10 in', color: '#A0C050', abbr: 'Nc', pnw: 'Mini varieties like Mini Napa #2 are perfect for small raised beds — full heads at half the footprint. Bolts readily in heat; fall is prime time. Extremely frost-tolerant — can hold in the ground well into December. Rich in vitamins, wonderful fresh or fermented as kimchi.' },
   { id: 'endive',       name: 'Endive',         sci: 'Cichorium endivia',                     type: 'Vegetable', seasons: ['fall','winter','spring'],       zones: ['front_beds','greenhouse'],  tended_by: null,    maturity: '85–100 days',                  spacing: '10 in', color: '#C8D040', abbr: 'En', pnw: 'Très Fine is a fine-leafed frisée-type endive — similar to frisée but with more delicate, lacy fronds. Slightly bitter flavor mellows with cold and blanching. Sow late summer for fall harvest; overwinters well with row cover. Blanch by tying outer leaves over the heart 1–2 weeks before harvest.' },
   { id: 'bok-choy',     name: 'Bok Choy',       sci: 'Brassica rapa subsp. chinensis',        type: 'Vegetable', seasons: ['spring','fall','winter'],       zones: ['front_beds'],               tended_by: null,    maturity: '45–60 days',                   spacing: '6 in',  color: '#48A840', abbr: 'Bk', pnw: 'One of the most productive fall brassicas in the PNW. Extremely frost-hardy — can handle temperatures into the mid-20s. Harvest whole heads at the base or take outer leaves continuously. Baby bok choy can be spaced closer at 4 in. Excellent stir-fry green; also great raw in salads when young.' },
   { id: 'korean-radish', name: 'Korean Radish', sci: 'Raphanus sativus var. longipinnatus',   type: 'Vegetable', seasons: ['spring','fall'],               zones: ['front_beds'],               tended_by: null,    maturity: '50–60 days',                   spacing: '6 in',  color: '#7848A8', abbr: 'Kr', pnw: 'Korean Bora King is a purple-skinned daikon-type radish with crisp white flesh — a staple of Korean cooking and kimchi. Much larger and slower than salad radishes; needs loose, deep soil to form properly. Fall is the prime window in the PNW. Store roots in a cool place after harvest; keeps for weeks.' },
   { id: 'garlic-chives', name: 'Garlic Chives', sci: 'Allium tuberosum',                      type: 'Herb',      seasons: ['spring','summer','fall'],          zones: ['front_beds','herb_bed'],               tended_by: null,    maturity: '60–90 days from seed',         spacing: '10 in', color: '#9A8830', abbr: 'GC', pnw: 'Flat, solid leaves with mild garlic flavor — classic in Korean and Chinese cooking. White flowers in late summer are edible and beautiful for pollinators. Spreads readily by self-seeding; deadhead to keep contained. NOT safe for Jazzy or cats — allium family.' },
-  { id: 'thyme',         name: 'English Thyme', sci: 'Thymus vulgaris',                       type: 'Herb',      seasons: ['spring','summer','fall','winter'], zones: ['front_beds','herb_bed'],               tended_by: null,    maturity: '75–90 days from transplant',   spacing: '12 in', color: '#8A9870', abbr: 'Th', pnw: 'Stays evergreen through Portland winters — harvest sprigs year-round. Needs excellent drainage; raised beds are ideal. Flavor peaks just before flowering in late spring. Great with roasted root vegetables and brassicas.' },
+  { id: 'thyme',         name: 'Thyme',         sci: 'Thymus sp.',                            type: 'Herb',      seasons: ['spring','summer','fall','winter'], zones: ['front_beds','herb_bed'],               tended_by: null,    maturity: '75–90 days from transplant',   spacing: '12 in', color: '#8A9870', abbr: 'Th', pnw: 'Stays evergreen through Portland winters — harvest sprigs year-round. Needs excellent drainage; raised beds are ideal. Flavor peaks just before flowering in late spring. English thyme (T. vulgaris) has the classic savory flavor; Lemon thyme (T. citriodorus) adds bright citrus notes — both care the same. Great with roasted root vegetables and brassicas.' },
   { id: 'sage',          name: 'Purple Sage',   sci: "Salvia officinalis 'Purpurascens'",     type: 'Herb',      seasons: ['spring','summer','fall','winter'], zones: ['front_beds','herb_bed'],               tended_by: null,    maturity: '75–90 days from transplant',   spacing: '18 in', color: '#8870A0', abbr: 'Sg', pnw: 'Purple-leafed culinary sage — same strong flavor, more ornamental. Semi-evergreen in zone 8b; foliage may bronze in cold but rarely dies back. Blue-purple flowers in early summer are excellent for bees. Harvest sparingly first year; becomes prolific by year two.' },
   { id: 'rosemary',      name: 'Rosemary',      sci: "Salvia rosmarinus 'Blue Lagoon'",       type: 'Herb',      seasons: ['spring','summer','fall','winter'], zones: ['front_beds','herb_bed'],               tended_by: null,    maturity: '90–120 days from transplant',  spacing: '24 in', color: '#5878A0', abbr: 'Ro', pnw: 'Blue Lagoon is a trailing prostrate rosemary — spreads low along the ground, beautiful at bed edges. Evergreen in zone 8b; protect with fleece if temps drop below 15°F. Very drought tolerant once established. Harvest by snipping stem tips; never strip a whole branch.' },
   { id: 'catnip',        name: 'Catnip',        sci: 'Nepeta cataria',                        type: 'Herb',      seasons: ['spring','summer','fall'],          zones: ['front_beds','herb_bed','pollinator_garden'], tended_by: null, maturity: '60–75 days from transplant',  spacing: '18 in', color: '#8A9060', abbr: 'Cn', pnw: 'Perennial — dies back fully in winter and returns vigorously in spring. Deadhead after flowering to prevent aggressive self-seeding. Lavender-white flower spikes are excellent for bees. Jazzy will love it — protect with a small cage while establishing so rolling cats do not damage young growth.' },
+  { id: 'oregano', name: 'Oregano', sci: 'Origanum vulgare', type: 'Herb', seasons: ['spring','summer','fall','winter'], zones: ['herb_bed'], tended_by: null, maturity: '80–90 days from transplant', spacing: '12 in', color: '#8A7840', abbr: 'Or', pnw: 'One of the most drought-tolerant herbs in the garden. Flavor is most intense just before flowering in midsummer; cut back by half after first flowering to encourage a second flush. Semi-evergreen in zone 8b; returns vigorously in spring.' },
+  { id: 'mint', name: 'Mint', sci: 'Mentha sp.', type: 'Herb', seasons: ['spring','summer','fall'], zones: ['herb_bed','front_beds'], tended_by: null, maturity: 'Perennial — harvest from year one', spacing: '12 in', color: '#40A878', abbr: 'Mn', pnw: 'Container planting is essential — spreads aggressively by underground runners. Four varieties in containers tucked between the raised beds: chocolate, lime, curly, and mojito mint. Cut back hard after flowering. Dies back in winter and returns reliably in spring; move containers to a sheltered spot if temps drop below 25°F.' },
+  { id: 'mandarin', name: 'Satsuma Mandarin', sci: "Citrus reticulata 'Kuno Wase'", type: 'Fruit tree', seasons: ['fall','winter'], zones: ['herb_bed'], tended_by: null, maturity: '2–3 years to first fruit; then annual Oct–Dec', spacing: '48 in', color: '#E87820', abbr: 'Sd', pnw: 'Kuno Wase is an early-ripening Satsuma — one of the hardiest mandarins. Container-grown near the herb garden. Bring inside to the greenhouse or garage when temps drop below 28°F. Fruit ripens October–December. Full sun essential for fruit set; water consistently in summer.' },
 ];
 
 const PLANT_BY_ID = Object.fromEntries(PLANTS.map(p => [p.id, p]));
+
+// ── Containers ───────────────────────────────
+// Potted plants that live in or near a zone but don't occupy bed cells.
+const CONTAINERS = [
+  { id: 'c-mint-chocolate', plantId: 'mint', variety: 'Chocolate Mint', zone: 'front_beds' },
+  { id: 'c-mint-lime',      plantId: 'mint', variety: 'Lime Mint',      zone: 'front_beds' },
+  { id: 'c-mint-curly',     plantId: 'mint', variety: 'Curly Mint',     zone: 'front_beds' },
+  { id: 'c-mint-mojito',    plantId: 'mint', variety: 'Mojito Mint',    zone: 'front_beds' },
+  { id: 'c-mandarin',       plantId: 'mandarin', variety: 'Kuno Wase Satsuma', zone: 'herb_bed' },
+];
 
 // ── Plant details (modal only) ────────────────
 // Holds lifecycle, light, water, planting_windows, companions, antagonists.
@@ -1209,6 +1231,41 @@ const PLANT_DETAILS = {
       { activity: 'harvest',    month_start: 6,  month_end: 9,  notes: 'Harvest leaves and flowering tips; potency is highest just before peak bloom' },
     ],
   },
+  'oregano': {
+    lifecycle: 'perennial', light: 'full_sun', water: 'low',
+    companions: [
+      { plant_id: 'tomato-stupice', note: 'Classic companion — oregano repels aphids and spider mites' },
+      { plant_id: 'kale', note: 'Oregano deters cabbage moths; aromatic herbs generally benefit brassicas' },
+      { plant_id: 'borage', note: 'Both attract pollinators; create a strong beneficial insect habitat together' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'transplant', month_start: 3, month_end: 5,  notes: 'Spring transplant preferred; establish before summer drought sets in' },
+      { activity: 'transplant', month_start: 8, month_end: 10, notes: 'Fall planting works well in zone 8b — roots establish in cool, moist soil' },
+      { activity: 'harvest',    month_start: 4, month_end: 10, notes: 'Peak flavor June–August just before and during bloom; dry easily for winter use' },
+    ],
+  },
+  'mint': {
+    lifecycle: 'perennial', light: 'partial_shade', water: 'medium',
+    companions: [
+      { plant_id: 'kale', note: 'Mint\'s strong scent deters cabbage moths and aphids; keep in a container nearby' },
+      { plant_id: 'tomato-stupice', note: 'Repels aphids and spider mites when grown nearby in containers' },
+    ],
+    antagonists: [],
+    windows: [
+      { activity: 'plant', month_start: 3, month_end: 5, notes: 'Spring plant into containers; establish before summer heat' },
+      { activity: 'plant', month_start: 8, month_end: 9, notes: 'Fall planting also works; roots establish well in cool temperatures' },
+      { activity: 'harvest', month_start: 4, month_end: 10, notes: 'Harvest stems regularly to encourage bushy growth; peak flavor just before flowering' },
+    ],
+  },
+  'mandarin': {
+    lifecycle: 'perennial', light: 'full_sun', water: 'medium',
+    companions: [],
+    antagonists: [],
+    windows: [
+      { activity: 'harvest', month_start: 10, month_end: 12, notes: 'Kuno Wase ripens early — often ready by late October in a warm, sunny spot' },
+    ],
+  },
 };
 
 // ── Label maps ────────────────────────────────
@@ -1262,6 +1319,9 @@ const PET_SAFETY = {
   'sage':            { beardie: null,  cat: false },  // ASPCA lists sage as toxic to cats; beardie data unclear
   'rosemary':        { beardie: true,  cat: false },  // ASPCA lists rosemary as toxic to cats; fine for beardies in small amounts
   'catnip':          { beardie: null,  cat: true  },  // safe and enriching for cats; beardie data unclear
+  'oregano':         { beardie: true,  cat: true  },  // generally considered safe for both in small amounts
+  'mint':            { beardie: false, cat: false },  // menthol problematic for reptiles; ASPCA lists culinary mints as toxic to cats
+  'mandarin':        { beardie: false, cat: false },  // citrus is acidic and not suitable for beardies; ASPCA lists citrus as toxic to cats
 };
 
 // ── Frost hardiness ───────────────────
@@ -1296,6 +1356,9 @@ const FROST_HARDINESS = {
   'sage':           { rating: 'very_hardy',     min_temp_f: 10,   notes: 'Semi-evergreen in zone 8b — foliage may bronze or partially die back in hard freezes but the plant survives and regrows.' },
   'rosemary':       { rating: 'very_hardy',     min_temp_f: 15,   notes: 'Evergreen through typical Portland winters. May suffer dieback below 15°F — protect with fleece. Trims damaged tips in spring and recovers quickly.' },
   'catnip':         { rating: 'very_hardy',     min_temp_f: -20,  notes: 'Dies back to the ground in winter and regrows reliably from the roots each spring. No protection needed.' },
+  'oregano':        { rating: 'very_hardy',     min_temp_f: 0,    notes: 'May die back to the crown in a hard freeze but returns vigorously in spring. Semi-evergreen in mild Portland winters.' },
+  'mint':           { rating: 'very_hardy',     min_temp_f: 20,   notes: 'Dies back fully in winter; returns reliably in spring. Container roots have less insulation — move pots to a sheltered spot if temps drop below 25°F.' },
+  'mandarin':       { rating: 'semi_hardy',     min_temp_f: 28,   notes: 'Kuno Wase Satsuma is one of the hardier mandarins but roots in a container freeze easily. Bring inside to greenhouse or garage when sustained temps below 28°F are forecast.' },
 };
 
 // Pixel art sprites: 1 = body color (currentColor), 2 = white highlight dot, 0 = transparent
@@ -1441,6 +1504,33 @@ function removeInstance(bedId, cellIdx) {
   delete instances[`b${bedId}-c${cellIdx}`];
   saveInstances();
   buildBeds();
+}
+
+// ── Container instance helpers ───────────────
+function getContainerInstance(containerId) {
+  return instances[`container-${containerId}`] || null;
+}
+
+function ensureContainerInstance(container) {
+  const key = `container-${container.id}`;
+  if (!instances[key]) {
+    instances[key] = makeInstance(container.plantId, todayISO(), 'transplant');
+    saveInstances();
+  }
+  return instances[key];
+}
+
+function updateContainerInstance(containerId, updates) {
+  const key = `container-${containerId}`;
+  if (instances[key]) { Object.assign(instances[key], updates); saveInstances(); }
+}
+
+function addContainerNote(containerId, text) {
+  const key = `container-${containerId}`;
+  if (instances[key] && text.trim()) {
+    instances[key].notes.push({ date: todayISO(), text: text.trim() });
+    saveInstances();
+  }
 }
 
 // ── Season helpers ───────────────────────────
@@ -1932,8 +2022,120 @@ function openPopover(x, y, bedId, cellIdx) {
 function closePopover() { popoverEl.classList.remove('open'); popoverEl.innerHTML = ''; }
 
 document.addEventListener('click', e => {
-  if (!popoverEl.contains(e.target) && !e.target.classList.contains('bc')) closePopover();
+  if (!popoverEl.contains(e.target) && !e.target.classList.contains('bc') && !e.target.closest('.container-badge')) closePopover();
 });
+
+// ── Container popover ─────────────────────────
+function openContainerPopover(x, y, container) {
+  const plant    = PLANT_BY_ID[container.plantId];
+  const inst     = ensureContainerInstance(container);
+  if (!plant) return;
+
+  popoverEl.innerHTML = '';
+
+  const hdr = document.createElement('div');
+  hdr.className = 'popover-header';
+  hdr.textContent = container.variety;
+  popoverEl.appendChild(hdr);
+
+  const row = document.createElement('div');
+  row.className = 'popover-plant';
+  row.style.cursor = 'pointer';
+  row.innerHTML = `<div class="p-dot" style="background:${plant.color}"></div><div><div class="popover-plant-name">${plant.name}</div><div class="popover-plant-detail">Container · ${plant.spacing} spacing</div></div>`;
+  row.addEventListener('click', () => { closePopover(); openModal(plant.id); });
+  popoverEl.appendChild(row);
+
+  const meta = document.createElement('div');
+  meta.className = 'popover-meta';
+
+  const dateRow = document.createElement('div');
+  dateRow.className = 'popover-meta-row';
+  const dateLabel = document.createElement('span');
+  dateLabel.className = 'popover-meta-label';
+  dateLabel.textContent = 'Planted';
+  const dateInput = document.createElement('input');
+  dateInput.type = 'date';
+  dateInput.className = 'popover-date-input';
+  dateInput.value = inst.plantedAt || '';
+  dateInput.addEventListener('change', () => {
+    updateContainerInstance(container.id, { plantedAt: dateInput.value });
+    const newEst = estimateHarvest(plant, dateInput.value);
+    if (estValueEl) estValueEl.textContent = newEst || '—';
+  });
+  dateRow.appendChild(dateLabel);
+  dateRow.appendChild(dateInput);
+  meta.appendChild(dateRow);
+
+  let estValueEl = null;
+  const harvestEst = estimateHarvest(plant, inst.plantedAt);
+  if (harvestEst !== null) {
+    const estRow = document.createElement('div');
+    estRow.className = 'popover-meta-row';
+    const estLabel = document.createElement('span');
+    estLabel.className = 'popover-meta-label';
+    estLabel.textContent = 'Est. harvest';
+    estValueEl = document.createElement('span');
+    estValueEl.className = 'popover-meta-value';
+    estValueEl.textContent = harvestEst;
+    estRow.appendChild(estLabel);
+    estRow.appendChild(estValueEl);
+    meta.appendChild(estRow);
+  }
+  popoverEl.appendChild(meta);
+
+  const notesSection = document.createElement('div');
+  notesSection.className = 'popover-notes';
+  const notesLabel = document.createElement('div');
+  notesLabel.className = 'popover-notes-label';
+  notesLabel.textContent = 'Notes';
+  notesSection.appendChild(notesLabel);
+
+  const notesList = document.createElement('div');
+  notesList.className = 'popover-notes-list';
+  if (inst.notes && inst.notes.length > 0) {
+    inst.notes.forEach(n => {
+      const noteEl = document.createElement('div');
+      noteEl.className = 'popover-note';
+      noteEl.innerHTML = `<span class="note-date">${formatDateShort(n.date)}</span><span class="note-text">${n.text}</span>`;
+      notesList.appendChild(noteEl);
+    });
+  } else {
+    const empty = document.createElement('div');
+    empty.className = 'popover-notes-empty';
+    empty.textContent = 'No notes yet';
+    notesList.appendChild(empty);
+  }
+  notesSection.appendChild(notesList);
+
+  const noteInput = document.createElement('textarea');
+  noteInput.className = 'popover-note-input';
+  noteInput.placeholder = 'Add an observation…';
+  noteInput.rows = 2;
+  notesSection.appendChild(noteInput);
+
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'popover-note-save';
+  saveBtn.textContent = 'Save note';
+  saveBtn.addEventListener('click', () => {
+    if (!noteInput.value.trim()) return;
+    addContainerNote(container.id, noteInput.value);
+    const emptyEl = notesList.querySelector('.popover-notes-empty');
+    if (emptyEl) emptyEl.remove();
+    const noteEl = document.createElement('div');
+    noteEl.className = 'popover-note';
+    noteEl.innerHTML = `<span class="note-date">${formatDateShort(todayISO())}</span><span class="note-text">${noteInput.value.trim()}</span>`;
+    notesList.appendChild(noteEl);
+    noteInput.value = '';
+  });
+  notesSection.appendChild(saveBtn);
+  popoverEl.appendChild(notesSection);
+
+  popoverEl.classList.add('open');
+  const rect = popoverEl.getBoundingClientRect();
+  const vw = window.innerWidth, vh = window.innerHeight;
+  popoverEl.style.left = Math.min(x + 8, vw - rect.width - 12) + 'px';
+  popoverEl.style.top  = Math.min(y + 8, vh - rect.height - 12) + 'px';
+}
 
 // ── Bed renderer ─────────────────────────────
 function buildBeds() {
@@ -2090,6 +2292,49 @@ function buildBeds() {
   });
 
   canvas.appendChild(grid);
+
+  // Container strip
+  const zoneContainers = CONTAINERS.filter(c => c.zone === currentZone);
+  if (zoneContainers.length > 0) {
+    const strip = document.createElement('div');
+    strip.className = 'container-strip';
+
+    const stripLabel = document.createElement('div');
+    stripLabel.className = 'container-strip-label';
+    stripLabel.textContent = 'Containers';
+    strip.appendChild(stripLabel);
+
+    const row = document.createElement('div');
+    row.className = 'container-strip-row';
+
+    zoneContainers.forEach(container => {
+      const plant = PLANT_BY_ID[container.plantId];
+      if (!plant) return;
+
+      const badge = document.createElement('div');
+      badge.className = 'container-badge';
+      badge.title = container.variety;
+      badge.addEventListener('click', e => { closeModal(); openContainerPopover(e.clientX, e.clientY, container); });
+
+      const dot = document.createElement('div');
+      dot.className = 'container-dot';
+      dot.style.background = plant.color + '28';
+      dot.style.borderColor = plant.color;
+      dot.style.color = plant.color;
+      dot.textContent = plant.abbr;
+      badge.appendChild(dot);
+
+      const label = document.createElement('div');
+      label.className = 'container-variety';
+      label.textContent = container.variety;
+      badge.appendChild(label);
+
+      row.appendChild(badge);
+    });
+
+    strip.appendChild(row);
+    canvas.appendChild(strip);
+  }
 
   const note = document.createElement('div');
   note.className = 'canvas-note';

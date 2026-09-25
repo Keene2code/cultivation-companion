@@ -5,7 +5,7 @@
   "type": "vegetable",
   "lifecycle": "annual",
   "days_to_maturity": [50, 70],
-  "spacing_in": 12,
+  "spacing_in": 10,
   "height_in": 16,
   "light": "full_sun",
   "water": "medium",
